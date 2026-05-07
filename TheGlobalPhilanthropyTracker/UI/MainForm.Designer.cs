@@ -159,7 +159,7 @@
             ClientSize = new Size(800, 450);
             Controls.Add(tabControl1);
             Name = "MainForm";
-            Text = "Form1";
+            Text = "The Global Philanthropy Tracker";
             tabControl1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
             tabPage2.ResumeLayout(false);
