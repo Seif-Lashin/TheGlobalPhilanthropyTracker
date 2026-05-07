@@ -13,6 +13,8 @@ namespace TheGlobalPhilanthropyTracker.UI
         public InitiativeTab()
         {
             InitializeComponent();
+
+            this.label1.Text = "Initiative Data Loaded at " + DateTime.Now.ToShortTimeString();
         }
     }
 }

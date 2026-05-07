@@ -4,7 +4,7 @@ using System.Text;
 
 namespace TheGlobalPhilanthropyTracker.Models
 {
-    internal class Expenditure
+    internal class Vendors
     {
     }
 }
