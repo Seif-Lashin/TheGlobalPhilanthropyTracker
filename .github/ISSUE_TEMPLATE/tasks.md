@@ -1,3 +1,11 @@
+---
+name: "Feature / Component Development"
+description: "Use this template for new features, enhancements, or component work requiring DB, repo, and UI changes."
+title: "[Feature]: "
+labels: ["Feature", "Enhancement"]
+assignees: []
+---
+
 ## 📌 Overview
 > Brief 1-2 sentence description of the feature or component being developed.
 
