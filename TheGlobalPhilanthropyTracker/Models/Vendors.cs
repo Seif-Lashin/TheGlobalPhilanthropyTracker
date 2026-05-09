@@ -4,7 +4,10 @@ using System.Text;
 
 namespace TheGlobalPhilanthropyTracker.Models
 {
-    internal class Vendors
+    public class Vendors
     {
+        public int vendorId;
+        public string companyName = "";
+        public string contactNumber = "";
     }
 }
