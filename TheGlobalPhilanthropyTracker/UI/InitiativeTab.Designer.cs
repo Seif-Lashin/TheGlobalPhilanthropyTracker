@@ -28,43 +28,36 @@
         /// </summary>
         private void InitializeComponent()
         {
-            button1 = new Button();
-            label1 = new Label();
+            initiativesTable = new DataGridView();
+            ((System.ComponentModel.ISupportInitialize)initiativesTable).BeginInit();
             SuspendLayout();
             // 
-            // button1
+            // initiativesTable
             // 
-            button1.Location = new Point(240, 199);
-            button1.Name = "button1";
-            button1.Size = new Size(75, 23);
-            button1.TabIndex = 0;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(295, 303);
-            label1.Name = "label1";
-            label1.Size = new Size(129, 15);
-            label1.TabIndex = 1;
-            label1.Text = "Initiative System Active";
+            initiativesTable.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            initiativesTable.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            initiativesTable.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            initiativesTable.Location = new Point(3, 349);
+            initiativesTable.MultiSelect = false;
+            initiativesTable.Name = "initiativesTable";
+            initiativesTable.RowHeadersVisible = false;
+            initiativesTable.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            initiativesTable.Size = new Size(1325, 276);
+            initiativesTable.TabIndex = 0;
             // 
             // InitiativeTab
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(label1);
-            Controls.Add(button1);
+            Controls.Add(initiativesTable);
             Name = "InitiativeTab";
-            Size = new Size(756, 569);
+            Size = new Size(1331, 628);
+            ((System.ComponentModel.ISupportInitialize)initiativesTable).EndInit();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
 
-        private Button button1;
-        private Label label1;
+        private DataGridView initiativesTable;
     }
 }

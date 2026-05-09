@@ -54,10 +54,11 @@
             tabControl1.Controls.Add(tabPage3);
             tabControl1.Controls.Add(tabPage4);
             tabControl1.Controls.Add(tabPage5);
-            tabControl1.Location = new Point(-2, 1);
+            tabControl1.Dock = DockStyle.Fill;
+            tabControl1.Location = new Point(0, 0);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(801, 447);
+            tabControl1.Size = new Size(800, 450);
             tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -66,7 +67,7 @@
             tabPage1.Location = new Point(4, 24);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(793, 419);
+            tabPage1.Size = new Size(792, 422);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Initiative Tab";
             tabPage1.UseVisualStyleBackColor = true;
@@ -76,7 +77,7 @@
             initiativeTab.Dock = DockStyle.Fill;
             initiativeTab.Location = new Point(3, 3);
             initiativeTab.Name = "initiativeTab";
-            initiativeTab.Size = new Size(787, 413);
+            initiativeTab.Size = new Size(786, 416);
             initiativeTab.TabIndex = 0;
             // 
             // tabPage2
