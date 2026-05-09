@@ -6,7 +6,7 @@ namespace TheGlobalPhilanthropyTracker.Repositories
 {
     public static class DatabaseConfig
     {
-        private static string _connectionString = "Server=.;Database=TheGlobalPhilanthropyTracker;Trusted_Connection=True;TrustServerCertificate=True;";
+        private static string _connectionString = "Data Source=.;Initial Catalog=TheGlobalPhilanthropyTracker;Integrated Security=True;Encrypt=True;Trust Server Certificate=True";
         public static string GetConnectionString()
         {
             return _connectionString;
