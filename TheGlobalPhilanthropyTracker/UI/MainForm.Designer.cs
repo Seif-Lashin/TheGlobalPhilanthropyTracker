@@ -57,7 +57,7 @@
             tabControl1.Location = new Point(-2, 1);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(801, 447);
+            tabControl1.Size = new Size(900, 550);
             tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -156,7 +156,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1000, 550);
             Controls.Add(tabControl1);
             Name = "MainForm";
             Text = "The Global Philanthropy Tracker";
