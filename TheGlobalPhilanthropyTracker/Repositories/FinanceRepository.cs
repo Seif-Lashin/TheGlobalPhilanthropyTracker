@@ -57,9 +57,9 @@ namespace TheGlobalPhilanthropyTracker.Repositories
                         cmd.Parameters.AddWithValue("@initiativeId", initiativeId);
 
                         var result = cmd.ExecuteScalar();
-                        fundingTarget = result == DBNull.Value? 0 : Convert.ToDecimal(result);
+                        fundingTarget = result == DBNull.Value ? 0 : Convert.ToDecimal(result);
 
-                   
+
                     }
 
                     string spentSql = "SELECT SUM(AMOUNT_SPENT) " +
@@ -77,10 +77,10 @@ namespace TheGlobalPhilanthropyTracker.Repositories
                     }
 
                     if (fundingTarget == 0) return 0;
-                    return Math.Round((amountSpent / fundingTarget) * 100,2);
+                    return Math.Round((amountSpent / fundingTarget) * 100, 2);
                 }
             }
-            catch(Exception ex) 
+            catch (Exception ex)
             {
                 MessageBox.Show("Error: " + ex.Message);
                 return 0;
@@ -92,7 +92,7 @@ namespace TheGlobalPhilanthropyTracker.Repositories
             DataTable contributions = new DataTable();
 
             try
-            { 
+            {
                 using (SqlConnection conn = new SqlConnection(_connectionString))
                 {
                     conn.Open();
@@ -112,13 +112,90 @@ namespace TheGlobalPhilanthropyTracker.Repositories
                     }
                 }
             }
-            catch( Exception ex ) 
+            catch (Exception ex)
             {
                 MessageBox.Show("Error: " + ex.Message);
             }
-             
+
             return contributions;
 
+        }
+
+        //Get the initiatives, vendors & Supporters for the Dropdown lists
+        //Runs SQL query, take all the rows it returns, and put them into a C# DataTable.
+        public DataTable GetInitiatives()
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(_connectionString))
+                {
+                    conn.Open();
+
+                    string sql = "SELECT INITIATIVEID, TITLE FROM INITIATIVES";
+
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                        adapter.Fill(dt);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+            return dt;
+        }
+
+        public DataTable GetVendors()
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(_connectionString))
+                {
+                    conn.Open();
+
+                    string sql = "SELECT VENDORID, COMPANY_NAME FROM VENDORS";
+
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                        adapter.Fill(dt);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+            return dt;
+        }
+
+        public DataTable GetSupporters()
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(_connectionString))
+                {
+                    conn.Open();
+
+                    string sql = "SELECT SUPPORTERID, FIRSTNAME + ' ' + LASTNAME AS FULLNAME FROM SUPPORTERS";
+
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                        adapter.Fill(dt);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+            return dt;
         }
     }
 }
