@@ -120,7 +120,7 @@ namespace TheGlobalPhilanthropyTracker.Repositories
             }
         }
 
-        public void UpdateInitiatve(Initiatives initiatives)
+        public void UpdateInitiative(Initiatives initiatives)
         {
             try
             {
@@ -128,8 +128,8 @@ namespace TheGlobalPhilanthropyTracker.Repositories
                 {
                     conn.Open();
 
-                    string sql = "UPDATE initiatives" +
-                                "SET sectorID = @sectorId, title = @title, primary_Objective = @primaryObjective, funding_Target = @fundingTarget, start_Date = @startDate, end_Date = @endDate, impact_Summaries = @impactSummaries" +
+                    string sql = "UPDATE initiatives " +
+                                "SET sectorID = @sectorId, title = @title, primary_Objective = @primaryObjective, funding_Target = @fundingTarget, start_Date = @startDate, end_Date = @endDate, impact_Summaries = @impactSummaries " +
                                 "WHERE initiativeID = @initiativeId";
 
                     using (SqlCommand cmd = new SqlCommand(sql, conn))
@@ -152,6 +152,28 @@ namespace TheGlobalPhilanthropyTracker.Repositories
                 Console.WriteLine("Exception: " + ex.ToString());
             }
         }
+
+        public void DeleteInitiative(int id)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(DatabaseConfig.GetConnectionString()))
+                {
+                    conn.Open();
+                    string sql = "DELETE FROM initiatives WHERE initiativeID = @id";
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@id", id);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Exception: " + ex.ToString());
+            }
+        }
+
     }
 }
 
