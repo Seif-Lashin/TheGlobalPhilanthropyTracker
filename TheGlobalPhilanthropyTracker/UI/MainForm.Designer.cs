@@ -62,7 +62,7 @@
             tabControl1.Location = new Point(0, 0);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(800, 450);
+            tabControl1.Size = new Size(1234, 611);
             tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -71,7 +71,7 @@
             tabPage1.Location = new Point(4, 24);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(792, 422);
+            tabPage1.Size = new Size(1226, 583);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Initiative Tab";
             tabPage1.UseVisualStyleBackColor = true;
@@ -81,7 +81,7 @@
             initiativeTab.Dock = DockStyle.Fill;
             initiativeTab.Location = new Point(3, 3);
             initiativeTab.Name = "initiativeTab";
-            initiativeTab.Size = new Size(786, 416);
+            initiativeTab.Size = new Size(1220, 577);
             initiativeTab.TabIndex = 0;
             // 
             // tabPage2
@@ -90,17 +90,19 @@
             tabPage2.Location = new Point(4, 24);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(792, 422);
+            tabPage2.Size = new Size(1226, 583);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Supporter Tab";
             tabPage2.UseVisualStyleBackColor = true;
             // 
             // supporterTab
             // 
+            supporterTab.BackColor = Color.FromArgb(30, 30, 30);
             supporterTab.Dock = DockStyle.Fill;
+            supporterTab.ForeColor = Color.FromArgb(224, 224, 224);
             supporterTab.Location = new Point(3, 3);
             supporterTab.Name = "supporterTab";
-            supporterTab.Size = new Size(786, 416);
+            supporterTab.Size = new Size(1220, 577);
             supporterTab.TabIndex = 0;
             // 
             // tabPage3
@@ -108,7 +110,7 @@
             tabPage3.Controls.Add(financeTab);
             tabPage3.Location = new Point(4, 24);
             tabPage3.Name = "tabPage3";
-            tabPage3.Size = new Size(792, 422);
+            tabPage3.Size = new Size(1226, 583);
             tabPage3.TabIndex = 2;
             tabPage3.Text = "Finance Tab";
             tabPage3.UseVisualStyleBackColor = true;
@@ -118,7 +120,7 @@
             financeTab.Dock = DockStyle.Fill;
             financeTab.Location = new Point(0, 0);
             financeTab.Name = "financeTab";
-            financeTab.Size = new Size(792, 422);
+            financeTab.Size = new Size(1226, 583);
             financeTab.TabIndex = 0;
             // 
             // tabPage4
@@ -126,7 +128,7 @@
             tabPage4.Controls.Add(analyticsTaba);
             tabPage4.Location = new Point(4, 24);
             tabPage4.Name = "tabPage4";
-            tabPage4.Size = new Size(792, 422);
+            tabPage4.Size = new Size(1226, 583);
             tabPage4.TabIndex = 3;
             tabPage4.Text = "Analytics Tab A";
             tabPage4.UseVisualStyleBackColor = true;
@@ -136,7 +138,7 @@
             analyticsTaba.Dock = DockStyle.Fill;
             analyticsTaba.Location = new Point(0, 0);
             analyticsTaba.Name = "analyticsTaba";
-            analyticsTaba.Size = new Size(792, 422);
+            analyticsTaba.Size = new Size(1226, 583);
             analyticsTaba.TabIndex = 0;
             // 
             // tabPage5
@@ -180,7 +182,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1234, 611);
             Controls.Add(tabControl1);
             Name = "MainForm";
             Text = "The Global Philanthropy Tracker";

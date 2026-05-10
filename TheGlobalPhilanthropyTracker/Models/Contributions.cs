@@ -4,7 +4,12 @@ using System.Text;
 
 namespace TheGlobalPhilanthropyTracker.Models
 {
-    internal class Contributions
+    public class Contributions
     {
+        public int UniqueReference { get; set; }
+        public int SupportedId { get; set; }
+        public int InitiativeId { get; set; }
+        public decimal Amount { get; set; }
+        public DateTime Timestamp { get; set; }
     }
 }
