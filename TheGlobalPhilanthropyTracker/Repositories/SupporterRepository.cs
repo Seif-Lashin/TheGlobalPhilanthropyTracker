@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Data;
 using Microsoft.Data.SqlClient;
 using TheGlobalPhilanthropyTracker.Models;
 
@@ -11,29 +9,65 @@ namespace TheGlobalPhilanthropyTracker.Repositories
     {
         private readonly string _connectionString = DatabaseConfig.GetConnectionString();
 
-        public DataTable GetAllSupporters()
+        public List<Supporters> GetAllSupporters()
         {
-            DataTable dt = new DataTable();
+            var supporters = new List<Supporters>();
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
-                string query = "SELECT SupporterId, FirstName, LastName, Email FROM Supporters";
+                string query = "SELECT SUPPORTERID, FIRSTNAME, LASTNAME, EMAIL FROM SUPPORTERS";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     conn.Open();
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        dt.Load(reader);
+                        while (reader.Read())
+                        {
+                            supporters.Add(new Supporters
+                            {
+                                SupporterId = Convert.ToInt32(reader["SUPPORTERID"]),
+                                FirstName = reader["FIRSTNAME"].ToString(),
+                                LastName = reader["LASTNAME"].ToString(),
+                                Email = reader["EMAIL"].ToString()
+                            });
+                        }
                     }
                 }
             }
-            return dt;
+            return supporters;
+        }
+
+        public Supporters GetSupporter(int id)
+        {
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                string query = "SELECT SUPPORTERID, FIRSTNAME, LASTNAME, EMAIL FROM SUPPORTERS WHERE SUPPORTERID = @Id";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@Id", id);
+                    conn.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            return new Supporters
+                            {
+                                SupporterId = Convert.ToInt32(reader["SUPPORTERID"]),
+                                FirstName = reader["FIRSTNAME"].ToString(),
+                                LastName = reader["LASTNAME"].ToString(),
+                                Email = reader["EMAIL"].ToString()
+                            };
+                        }
+                    }
+                }
+            }
+            return null;
         }
 
         public void RegisterSupporter(Supporters s)
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
-                string query = "INSERT INTO Supporters (FirstName, LastName, Email) VALUES (@FirstName, @LastName, @Email)";
+                string query = "INSERT INTO SUPPORTERS (FIRSTNAME, LASTNAME, EMAIL) VALUES (@FirstName, @LastName, @Email)";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@FirstName", s.FirstName);
@@ -50,7 +84,7 @@ namespace TheGlobalPhilanthropyTracker.Repositories
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
-                string query = "INSERT INTO CONTRIBUTIONS (SupporterId, InitiativeId, Amount, Timestamp) VALUES (@SupporterId, @InitiativeId, @Amount, @Timestamp)";
+                string query = "INSERT INTO CONTRIBUTIONS (SUPPORTERID, INITIATIVEID, AMOUNT, [TIMESTAMP]) VALUES (@SupporterId, @InitiativeId, @Amount, @Timestamp)";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@SupporterId", supporterId);
@@ -68,7 +102,7 @@ namespace TheGlobalPhilanthropyTracker.Repositories
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
-                string query = "UPDATE Supporters SET Email = @Email WHERE SupporterId = @Id";
+                string query = "UPDATE SUPPORTERS SET EMAIL = @Email WHERE SUPPORTERID = @Id";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@Email", newEmail);
@@ -84,7 +118,7 @@ namespace TheGlobalPhilanthropyTracker.Repositories
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
-                string query = "DELETE FROM Supporters WHERE SupporterId = @Id";
+                string query = "DELETE FROM SUPPORTERS WHERE SUPPORTERID = @Id";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@Id", id);

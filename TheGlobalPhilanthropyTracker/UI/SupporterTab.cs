@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 using TheGlobalPhilanthropyTracker.Models;
 using TheGlobalPhilanthropyTracker.Repositories;
@@ -39,9 +35,11 @@ namespace TheGlobalPhilanthropyTracker.UI
             dgvSupporters.DefaultCellStyle.Padding = new Padding(5);
             dgvSupporters.RowTemplate.Height = 30;
 
+            dgvSupporters.SelectionChanged += dgvSupporters_SelectionChanged;
+
             _repo = new SupporterRepository();
             LoadSupporters();
-            // LoadInitiatives();
+            LoadInitiatives();
         }
 
         private void LoadSupporters()
@@ -51,22 +49,58 @@ namespace TheGlobalPhilanthropyTracker.UI
 
         void LoadInitiatives()
         {
-            // Lashin's
+            var initiativeRepo = new InitiativeRepository();
+            var initiatives = initiativeRepo.GetInitiatives();
+
+            cmbInitiative.DataSource = initiatives;
+            cmbInitiative.DisplayMember = "title";
+            cmbInitiative.ValueMember = "initiativeId";
+            cmbInitiative.SelectedIndex = -1;
+        }
+
+        private void dgvSupporters_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dgvSupporters.SelectedRows.Count > 0)
+            {
+                var supporter = (Supporters)dgvSupporters.SelectedRows[0].DataBoundItem;
+                if (supporter != null)
+                {
+                    txtFirstName.Text = supporter.FirstName;
+                    txtLastName.Text = supporter.LastName;
+                    txtEmail.Text = supporter.Email;
+                }
+            }
         }
 
         private void btnRegister_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtFirstName.Text) || string.IsNullOrWhiteSpace(txtEmail.Text))
+            string firstName = txtFirstName.Text.Trim();
+            string lastName = txtLastName.Text.Trim();
+            string email = txtEmail.Text.Trim();
+
+            if (string.IsNullOrWhiteSpace(firstName) || string.IsNullOrWhiteSpace(lastName) || string.IsNullOrWhiteSpace(email))
             {
-                MessageBox.Show("First Name and Email are required.");
+                MessageBox.Show("First Name, Last Name, and Email are all required.");
+                return;
+            }
+
+            if (firstName.Length > 50 || lastName.Length > 50)
+            {
+                MessageBox.Show("First Name and Last Name must not exceed 50 characters.");
+                return;
+            }
+
+            if (email.Length > 100)
+            {
+                MessageBox.Show("Email must not exceed 100 characters.");
                 return;
             }
 
             var newSupporter = new Supporters
             {
-                FirstName = txtFirstName.Text,
-                LastName = txtLastName.Text,
-                Email = txtEmail.Text
+                FirstName = firstName,
+                LastName = lastName,
+                Email = email
             };
 
             _repo.RegisterSupporter(newSupporter);
@@ -78,8 +112,16 @@ namespace TheGlobalPhilanthropyTracker.UI
         {
             if (dgvSupporters.SelectedRows.Count > 0 && !string.IsNullOrWhiteSpace(txtEmail.Text))
             {
+                string newEmail = txtEmail.Text.Trim();
+
+                if (newEmail.Length > 100)
+                {
+                    MessageBox.Show("Email must not exceed 100 characters.");
+                    return;
+                }
+
                 int id = Convert.ToInt32(dgvSupporters.SelectedRows[0].Cells["SupporterId"].Value);
-                _repo.UpdateSupporterEmail(id, txtEmail.Text);
+                _repo.UpdateSupporterEmail(id, newEmail);
                 LoadSupporters();
             }
         }
@@ -93,6 +135,7 @@ namespace TheGlobalPhilanthropyTracker.UI
                 {
                     _repo.DeleteSupporter(id);
                     LoadSupporters();
+                    ClearRegistrationFields();
                 }
                 catch (Microsoft.Data.SqlClient.SqlException ex)
                 {
@@ -114,7 +157,7 @@ namespace TheGlobalPhilanthropyTracker.UI
                 return;
             }
 
-            if (decimal.TryParse(txtAmount.Text, out decimal amount))
+            if (decimal.TryParse(txtAmount.Text, out decimal amount) && amount > 0)
             {
                 int supporterId = Convert.ToInt32(dgvSupporters.SelectedRows[0].Cells["SupporterId"].Value);
                 int initiativeId = Convert.ToInt32(cmbInitiative.SelectedValue);
@@ -125,7 +168,7 @@ namespace TheGlobalPhilanthropyTracker.UI
             }
             else
             {
-                MessageBox.Show("Please enter a valid amount.");
+                MessageBox.Show("Please enter a valid positive amount.");
             }
         }
 
@@ -134,6 +177,7 @@ namespace TheGlobalPhilanthropyTracker.UI
             txtFirstName.Clear();
             txtLastName.Clear();
             txtEmail.Clear();
+            dgvSupporters.ClearSelection();
         }
     }
 }
