@@ -7,7 +7,7 @@ namespace TheGlobalPhilanthropyTracker.Models
     public class Contributions
     {
         public int UniqueReference { get; set; }
-        public int SupportedId { get; set; }
+        public int SupporterId { get; set; }
         public int InitiativeId { get; set; }
         public decimal Amount { get; set; }
         public DateTime Timestamp { get; set; }
