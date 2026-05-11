@@ -11,29 +11,31 @@ namespace TheGlobalPhilanthropyTracker.Repositories
     {
         private readonly string _connectionString = DatabaseConfig.GetConnectionString();
 
-        // Initiatives (total donations > total expenditures)
         public DataTable GetUnspentInitiatives()
         {
             string sql = @"
-                SELECT i.INITIATIVEID, i.TITLE, ISNULL(SUM(c.AMOUNT), 0) AS TotalDonations, ISNULL(SUM(e.AMOUNT_SPENT), 0) AS TotalExpenditures
+                SELECT i.INITIATIVEID, i.TITLE
                 FROM INITIATIVES i
-                LEFT JOIN CONTRIBUTIONS c ON i.INITIATIVEID = c.INITIATIVEID
-                LEFT JOIN EXPENDITURES e ON i.INITIATIVEID = e.INITIATIVEID
-                GROUP BY i.INITIATIVEID, i.TITLE
-                HAVING ISNULL(SUM(c.AMOUNT), 0) > ISNULL(SUM(e.AMOUNT_SPENT), 0)";
+                WHERE i.INITIATIVEID NOT IN (SELECT DISTINCT INITIATIVEID FROM EXPENDITURES)";
 
             DataTable dt = new DataTable();
-            using (SqlConnection conn = new SqlConnection(_connectionString))
+            try
             {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand(sql, conn); // command object with the SQL query and connection
-                SqlDataAdapter adapter = new SqlDataAdapter(cmd); // data adapter to execute the command and fill the DataTable
-                adapter.Fill(dt);
+                using (SqlConnection conn = new SqlConnection(_connectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand(sql, conn); // command object with the SQL query and connection
+                    SqlDataAdapter adapter = new SqlDataAdapter(cmd); // data adapter to execute the command and fill the DataTable
+                    adapter.Fill(dt);
+                }
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine("Exception: " + ex.ToString());
             }
             return dt;
         }
 
-        // Initiatives with contributions or expenditures in the last 30 days
         public DataTable GetRecentActivity()
         {
             string sql = @"
@@ -49,33 +51,47 @@ namespace TheGlobalPhilanthropyTracker.Repositories
                 )";
 
             DataTable dt = new DataTable();
-            using (SqlConnection conn = new SqlConnection(_connectionString))
+            try
             {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand(sql, conn);
-                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-                adapter.Fill(dt);
+                    using (SqlConnection conn = new SqlConnection(_connectionString))
+                    {
+                        conn.Open();
+                        SqlCommand cmd = new SqlCommand(sql, conn);
+                        SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                        adapter.Fill(dt);
+                    }
+            }
+            catch(Exception ex)
+            {
+                    Console.WriteLine("Exception: " + ex.ToString());
             }
             return dt;
         }
 
-        // Supporter Profiles : total donated by each supporter
         public DataTable GetDetailedSupporterProfiles()
         {
             string sql = @"
-                SELECT s.SUPPORTERID, s.FIRSTNAME, s.LASTNAME, s.EMAIL, ISNULL(SUM(c.AMOUNT), 0) AS TotalDonated
+                SELECT s.SUPPORTERID, s.FIRSTNAME, s.LASTNAME, s.EMAIL,
+                COUNT(DISTINCT c.INITIATIVEID) AS UniqueInitiatives
                 FROM SUPPORTERS s
                 LEFT JOIN CONTRIBUTIONS c ON s.SUPPORTERID = c.SUPPORTERID
                 GROUP BY s.SUPPORTERID, s.FIRSTNAME, s.LASTNAME, s.EMAIL
-                ORDER BY TotalDonated DESC";
+                ORDER BY UniqueInitiatives DESC";
 
             DataTable dt = new DataTable();
-            using (SqlConnection conn = new SqlConnection(_connectionString))
+            try
             {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand(sql, conn);
-                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-                adapter.Fill(dt);
+                using (SqlConnection conn = new SqlConnection(_connectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                    adapter.Fill(dt);
+                }
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine("Exception: " + ex.ToString());
             }
             return dt;
         }
