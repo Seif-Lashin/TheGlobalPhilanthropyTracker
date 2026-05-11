@@ -11,6 +11,5 @@ namespace TheGlobalPhilanthropyTracker.Models
         public int vendorId;
         public decimal amountSpent;
         public DateTime dateSpent;
-        //{ get;  set; }
     }
 }

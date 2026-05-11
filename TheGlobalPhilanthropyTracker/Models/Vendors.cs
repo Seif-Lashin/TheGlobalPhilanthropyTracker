@@ -9,5 +9,7 @@ namespace TheGlobalPhilanthropyTracker.Models
         public int vendorId;
         public string companyName = "";
         public string contactNumber = "";
+        //name & number strings will never be null,
+        //they start empty to prevent setting them to null by default.
     }
 }
