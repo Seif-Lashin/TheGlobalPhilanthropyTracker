@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+
 using System.Data;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 
 namespace TheGlobalPhilanthropyTracker.Repositories
 {
     internal class AnalyticsRepositoryB
     {
-        private readonly string _connectionString = DatabaseConfig.ConnectionString;
+        private readonly string _connectionString = DatabaseConfig.GetConnectionString();
 
         // Initiatives (total donations > total expenditures)
         public DataTable GetUnspentInitiatives()
