@@ -54,10 +54,11 @@
             tabControl1.Controls.Add(tabPage3);
             tabControl1.Controls.Add(tabPage4);
             tabControl1.Controls.Add(tabPage5);
-            tabControl1.Location = new Point(-2, 1);
+            tabControl1.Dock = DockStyle.Fill;
+            tabControl1.Location = new Point(0, 0);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(801, 447);
+            tabControl1.Size = new Size(800, 450);
             tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -121,7 +122,7 @@
             tabPage4.Controls.Add(analyticsTaba);
             tabPage4.Location = new Point(4, 24);
             tabPage4.Name = "tabPage4";
-            tabPage4.Size = new Size(793, 419);
+            tabPage4.Size = new Size(792, 422);
             tabPage4.TabIndex = 3;
             tabPage4.Text = "Analytics Tab A";
             tabPage4.UseVisualStyleBackColor = true;
@@ -131,7 +132,7 @@
             analyticsTaba.Dock = DockStyle.Fill;
             analyticsTaba.Location = new Point(0, 0);
             analyticsTaba.Name = "analyticsTaba";
-            analyticsTaba.Size = new Size(793, 419);
+            analyticsTaba.Size = new Size(792, 422);
             analyticsTaba.TabIndex = 0;
             // 
             // tabPage5
