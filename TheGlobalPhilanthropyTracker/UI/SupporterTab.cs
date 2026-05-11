@@ -21,7 +21,7 @@ namespace TheGlobalPhilanthropyTracker.UI
             dgvSupporters.GridColor = Color.FromArgb(50, 50, 50);
             dgvSupporters.RowHeadersVisible = false;
             dgvSupporters.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-
+            dgvSupporters.MultiSelect = false;
             dgvSupporters.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
             dgvSupporters.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(45, 45, 48);
             dgvSupporters.ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb(224, 224, 224);
@@ -103,9 +103,16 @@ namespace TheGlobalPhilanthropyTracker.UI
                 Email = email
             };
 
-            _repo.RegisterSupporter(newSupporter);
-            LoadSupporters();
-            ClearRegistrationFields();
+            try
+            {
+                _repo.RegisterSupporter(newSupporter);
+                LoadSupporters();
+                ClearRegistrationFields();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Failed to register supporter. Database error: {ex.Message}", "Registration Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnUpdateEmail_Click(object sender, EventArgs e)
@@ -120,9 +127,16 @@ namespace TheGlobalPhilanthropyTracker.UI
                     return;
                 }
 
-                int id = Convert.ToInt32(dgvSupporters.SelectedRows[0].Cells["SupporterId"].Value);
-                _repo.UpdateSupporterEmail(id, newEmail);
-                LoadSupporters();
+                try
+                {
+                    int id = Convert.ToInt32(dgvSupporters.SelectedRows[0].Cells["SupporterId"].Value);
+                    _repo.UpdateSupporterEmail(id, newEmail);
+                    LoadSupporters();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Failed to update email. Database error: {ex.Message}", "Update Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
@@ -144,7 +158,14 @@ namespace TheGlobalPhilanthropyTracker.UI
                     {
                         MessageBox.Show("Cannot delete this supporter because they have active contribution records.");
                     }
-                    else throw;
+                    else
+                    {
+                        MessageBox.Show($"Database error: {ex.Message}", "Deletion Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"An unexpected error occurred: {ex.Message}", "Deletion Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -159,12 +180,19 @@ namespace TheGlobalPhilanthropyTracker.UI
 
             if (decimal.TryParse(txtAmount.Text, out decimal amount) && amount > 0)
             {
-                int supporterId = Convert.ToInt32(dgvSupporters.SelectedRows[0].Cells["SupporterId"].Value);
-                int initiativeId = Convert.ToInt32(cmbInitiative.SelectedValue);
+                try
+                {
+                    int supporterId = Convert.ToInt32(dgvSupporters.SelectedRows[0].Cells["SupporterId"].Value);
+                    int initiativeId = Convert.ToInt32(cmbInitiative.SelectedValue);
 
-                _repo.AddContribution(supporterId, initiativeId, amount);
-                MessageBox.Show("Contribution logged successfully.");
-                txtAmount.Clear();
+                    _repo.AddContribution(supporterId, initiativeId, amount);
+                    MessageBox.Show("Contribution logged successfully.");
+                    txtAmount.Clear();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Failed to log contribution. Database error: {ex.Message}", "Contribution Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             else
             {

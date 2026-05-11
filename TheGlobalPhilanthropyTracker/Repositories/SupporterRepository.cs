@@ -36,7 +36,7 @@ namespace TheGlobalPhilanthropyTracker.Repositories
             return supporters;
         }
 
-        public Supporters GetSupporter(int id)
+        public Supporters? GetSupporter(int id)
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
