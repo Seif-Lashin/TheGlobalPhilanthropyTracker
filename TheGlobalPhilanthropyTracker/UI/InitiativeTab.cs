@@ -35,9 +35,19 @@ namespace TheGlobalPhilanthropyTracker.UI
 
             foreach (var initiative in initiatives)
             {
-                Sectors sector = new Sectors();
-                sector = sectorRepository.GetSector(initiative.sectorId);
-                dataTable.Rows.Add(initiative.initiativeId, initiative.title, initiative.primaryObjective, initiative.fundingTarget, initiative.startDate, initiative.endDate, sector.name);
+                var sector = sectorRepository.GetSector(initiative.sectorId);
+
+                string sectorName = sector?.name ?? "Unknown/Deleted";
+
+                dataTable.Rows.Add(
+                    initiative.initiativeId,
+                    initiative.title,
+                    initiative.primaryObjective,
+                    initiative.fundingTarget,
+                    initiative.startDate,
+                    initiative.endDate,
+                    sectorName
+                );
             }
 
             this.initiativesTable.DataSource = dataTable;
@@ -58,8 +68,11 @@ namespace TheGlobalPhilanthropyTracker.UI
 
         private void btnEditInitiative_Click(object sender, EventArgs e)
         {
-            var val = this.initiativesTable.CurrentRow.Cells["InitiativeID"].Value.ToString();
-            if (val == null || val.Length == 0) return;
+            if(this.initiativesTable.CurrentRow == null || this.initiativesTable.CurrentRow.Index < 0) return;
+
+            var val = this.initiativesTable.CurrentRow.Cells["InitiativeID"].Value;
+            if (val == null || val == DBNull.Value) return;
+
             int id = Convert.ToInt32(val);
 
             var repo = new InitiativeRepository();
@@ -81,8 +94,11 @@ namespace TheGlobalPhilanthropyTracker.UI
 
         private void btnDeleteInitiative_Click(object sender, EventArgs e)
         {
-            var val = this.initiativesTable.CurrentRow.Cells["InitiativeID"].Value.ToString();
-            if (val == null || val.Length == 0) return;
+            if (this.initiativesTable.CurrentRow == null || this.initiativesTable.CurrentRow.Index < 0) return;
+            
+            var val = this.initiativesTable.CurrentRow.Cells["InitiativeID"].Value;
+
+            if (val == null || val == DBNull.Value) return;
             int id = Convert.ToInt32(val);
 
             var repo = new InitiativeRepository();

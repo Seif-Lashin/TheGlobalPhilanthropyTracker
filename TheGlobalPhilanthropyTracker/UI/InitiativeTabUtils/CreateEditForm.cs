@@ -18,6 +18,7 @@ namespace TheGlobalPhilanthropyTracker.UI.InitiativeTabUtils
             InitializeComponent();
             this.DialogResult = DialogResult.Cancel;
             loadSectors();
+            errorProvider.ContainerControl = this;
             errorProvider.BlinkStyle = ErrorBlinkStyle.NeverBlink;
         }
         private bool ValidateInputs()
@@ -48,9 +49,9 @@ namespace TheGlobalPhilanthropyTracker.UI.InitiativeTabUtils
                 isValid = false;
             }
 
-            if (this.numericUpDownTarget.Value < 0)
+            if (this.numericUpDownTarget.Value < 1)
             {
-                errorProvider.SetError(this.numericUpDownTarget, "Target cannot be negative.");
+                errorProvider.SetError(this.numericUpDownTarget, "Target must be at least 1.");
                 isValid = false;
             }
 

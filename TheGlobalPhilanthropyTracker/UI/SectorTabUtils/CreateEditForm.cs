@@ -18,6 +18,7 @@ namespace TheGlobalPhilanthropyTracker.UI.SectorTabUtils
         {
             InitializeComponent();
             this.DialogResult = DialogResult.Cancel;
+            errorProvider.ContainerControl = this;
             errorProvider.BlinkStyle = ErrorBlinkStyle.NeverBlink;
         }
 

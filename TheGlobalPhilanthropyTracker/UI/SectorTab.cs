@@ -52,8 +52,10 @@ namespace TheGlobalPhilanthropyTracker.UI
 
         private void btnEditSector_Click(object sender, EventArgs e)
         {
-            var val = this.sectorsTable.CurrentRow.Cells["SectorID"].Value.ToString();
-            if (val == null || val.Length == 0) return;
+            if(this.sectorsTable.CurrentRow == null || this.sectorsTable.CurrentRow.Index < 0) return;
+            var val = this.sectorsTable.CurrentRow.Cells["SectorID"].Value;
+            if (val == null || val == DBNull.Value) return;
+
             int id = Convert.ToInt32(val);
 
             var repo = new SectorRepository();
@@ -75,8 +77,10 @@ namespace TheGlobalPhilanthropyTracker.UI
 
         private void btnDeleteSector_Click(object sender, EventArgs e)
         {
-            var val = this.sectorsTable.CurrentRow.Cells["SectorID"].Value.ToString();
-            if (val == null || val.Length == 0) return;
+            if(this.sectorsTable.CurrentRow == null || this.sectorsTable.CurrentRow.Index < 0) return;
+            var val = this.sectorsTable.CurrentRow.Cells["SectorID"].Value;
+            if (val == null || val == DBNull.Value) return;
+
             int id = Convert.ToInt32(val);
 
             var repo = new SectorRepository();

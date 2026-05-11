@@ -16,7 +16,7 @@ namespace TheGlobalPhilanthropyTracker.Repositories
                 using (SqlConnection conn = new SqlConnection(DatabaseConfig.GetConnectionString()))
                 {
                     conn.Open();
-                    string sql = "SELECT * FROM Sectors";
+                    string sql = "SELECT * FROM SECTORS";
                     using (SqlCommand cmd = new SqlCommand(sql, conn))
                     {
                         using (SqlDataReader reader = cmd.ExecuteReader())
@@ -24,9 +24,9 @@ namespace TheGlobalPhilanthropyTracker.Repositories
                             while (reader.Read())
                             {
                                 var sector = new Sectors();
-                                sector.sectorId = Convert.ToInt32(reader["sectorId"]);
-                                sector.name = reader["name"].ToString();
-                                sector.description = reader["description"] == DBNull.Value ? null : reader["description"].ToString();
+                                sector.sectorId = Convert.ToInt32(reader["SECTORID"]);
+                                sector.name = reader["NAME"].ToString();
+                                sector.description = reader["DESCRIPTION"] == DBNull.Value ? null : reader["DESCRIPTION"].ToString();
                                 sectors.Add(sector);
                             }
                         }
@@ -48,7 +48,7 @@ namespace TheGlobalPhilanthropyTracker.Repositories
                 using (SqlConnection conn = new SqlConnection(DatabaseConfig.GetConnectionString()))
                 {
                     conn.Open();
-                    string sql = "SELECT * FROM Sectors WHERE sectorId = @id";
+                    string sql = "SELECT * FROM SECTORS WHERE SECTORID = @id";
                     using (SqlCommand cmd = new SqlCommand(sql, conn))
                     {
                         cmd.Parameters.AddWithValue("@id", id);
@@ -57,9 +57,9 @@ namespace TheGlobalPhilanthropyTracker.Repositories
                             if (reader.Read())
                             {
                                 var sector = new Sectors();
-                                sector.sectorId = Convert.ToInt32(reader["sectorId"]);
-                                sector.name = reader["name"].ToString();
-                                sector.description = reader["description"] == DBNull.Value ? null : reader["description"].ToString();
+                                sector.sectorId = Convert.ToInt32(reader["SECTORID"]);
+                                sector.name = reader["NAME"].ToString();
+                                sector.description = reader["DESCRIPTION"] == DBNull.Value ? null : reader["DESCRIPTION"].ToString();
                                 return sector;
                             }
                         }
@@ -80,7 +80,7 @@ namespace TheGlobalPhilanthropyTracker.Repositories
                 using (SqlConnection conn = new SqlConnection(DatabaseConfig.GetConnectionString()))
                 {
                     conn.Open();
-                    string sql = "INSERT INTO sectors (name, description) VALUES (@name, @description)";
+                    string sql = "INSERT INTO SECTORS (NAME, DESCRIPTION) VALUES (@name, @description)";
                     using (SqlCommand cmd = new SqlCommand(sql, conn))
                     {
                         cmd.Parameters.AddWithValue("@name", sector.name);
@@ -102,7 +102,7 @@ namespace TheGlobalPhilanthropyTracker.Repositories
                 using (SqlConnection conn = new SqlConnection(DatabaseConfig.GetConnectionString()))
                 {
                     conn.Open();
-                    string sql = "DELETE FROM sectors WHERE sectorId = @id";
+                    string sql = "DELETE FROM SECTORS WHERE SECTORID = @id";
                     using (SqlCommand cmd = new SqlCommand(sql, conn))
                     {
                         cmd.Parameters.AddWithValue("@id", id);
@@ -123,7 +123,7 @@ namespace TheGlobalPhilanthropyTracker.Repositories
                 using (SqlConnection conn = new SqlConnection(DatabaseConfig.GetConnectionString()))
                 {
                     conn.Open();
-                    string sql = "UPDATE sectors SET name = @name, description = @description WHERE sectorId = @id";
+                    string sql = "UPDATE SECTORS SET NAME = @name, DESCRIPTION = @description WHERE SECTORID = @id";
                     using (SqlCommand cmd = new SqlCommand(sql, conn))
                     {
                         cmd.Parameters.AddWithValue("@name", sector.name);
