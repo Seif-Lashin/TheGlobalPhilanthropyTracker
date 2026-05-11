@@ -78,7 +78,7 @@ namespace TheGlobalPhilanthropyTracker.UI
         {
             if (dgvSupporters.SelectedRows.Count > 0 && !string.IsNullOrWhiteSpace(txtEmail.Text))
             {
-                int id = Convert.ToInt32(dgvSupporters.SelectedRows[0].Cells["SUPPORTERID"].Value);
+                int id = Convert.ToInt32(dgvSupporters.SelectedRows[0].Cells["SupporterId"].Value);
                 _repo.UpdateSupporterEmail(id, txtEmail.Text);
                 LoadSupporters();
             }
@@ -88,7 +88,7 @@ namespace TheGlobalPhilanthropyTracker.UI
         {
             if (dgvSupporters.SelectedRows.Count > 0)
             {
-                int id = Convert.ToInt32(dgvSupporters.SelectedRows[0].Cells["SUPPORTERID"].Value);
+                int id = Convert.ToInt32(dgvSupporters.SelectedRows[0].Cells["SupporterId"].Value);
                 try
                 {
                     _repo.DeleteSupporter(id);
@@ -116,7 +116,7 @@ namespace TheGlobalPhilanthropyTracker.UI
 
             if (decimal.TryParse(txtAmount.Text, out decimal amount))
             {
-                int supporterId = Convert.ToInt32(dgvSupporters.SelectedRows[0].Cells["SUPPORTERID"].Value);
+                int supporterId = Convert.ToInt32(dgvSupporters.SelectedRows[0].Cells["SupporterId"].Value);
                 int initiativeId = Convert.ToInt32(cmbInitiative.SelectedValue);
 
                 _repo.AddContribution(supporterId, initiativeId, amount);

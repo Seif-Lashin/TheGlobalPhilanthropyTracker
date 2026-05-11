@@ -50,12 +50,13 @@ namespace TheGlobalPhilanthropyTracker.Repositories
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
-                string query = "INSERT INTO CONTRIBUTIONS (SUPPORTERID, INITIATIVEID, AMOUNT, TIMESTAMP) VALUES (@SupporterId, @InitiativeId, @Amount, @Timestamp)";
+                string query = "INSERT INTO CONTRIBUTIONS (SupporterId, InitiativeId, Amount, Timestamp) VALUES (@SupporterId, @InitiativeId, @Amount, @Timestamp)";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@SupporterId", supporterId);
                     cmd.Parameters.AddWithValue("@InitiativeId", initiativeId);
                     cmd.Parameters.AddWithValue("@Amount", amount);
+                    cmd.Parameters.AddWithValue("@Timestamp", DateTime.Now);
 
                     conn.Open();
                     cmd.ExecuteNonQuery();
@@ -83,7 +84,7 @@ namespace TheGlobalPhilanthropyTracker.Repositories
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
-                string query = "DELETE FROM SUPPORTERS WHERE SUPPORTERID = @Id";
+                string query = "DELETE FROM Supporters WHERE SupporterId = @Id";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@Id", id);
