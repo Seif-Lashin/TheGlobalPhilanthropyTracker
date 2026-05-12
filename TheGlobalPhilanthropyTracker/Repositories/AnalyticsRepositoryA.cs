@@ -11,15 +11,17 @@ namespace TheGlobalPhilanthropyTracker.Repositories
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 string query = @"
-                    SELECT TOP 3 S.name AS [Name of sector], COUNT(I.INITIATIVEID) AS [Number of initiatives]
+                    SELECT TOP 3 S.SECTORID AS [Sector ID], S.name AS [Name of sector], COUNT(C.UNIQUE_REFERENCE) AS [Number of Contribution]
                     FROM Sectors S
                     Left JOIN INITIATIVES I ON S.SECTORID = I.SECTORID
                     Left JOIN CONTRIBUTIONS C ON I.INITIATIVEID = C.INITIATIVEID
-                    GROUP BY S.name
-                    ORDER BY [Number of initiatives] DESC";
+                    GROUP BY S.SECTORID, S.name
+                    ORDER BY [Number of Contribution] DESC";
                 DataTable resultTable = new DataTable();
-                SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
-                adapter.Fill(resultTable);
+                using (SqlDataAdapter adapter = new SqlDataAdapter(query, connection))
+                {
+                    adapter.Fill(resultTable);
+                }
                 return resultTable;
             }
         }
@@ -37,12 +39,16 @@ namespace TheGlobalPhilanthropyTracker.Repositories
                     
                     FROM INITIATIVES I
                     LEFT JOIN CONTRIBUTIONS C ON I.INITIATIVEID = C.INITIATIVEID
+                    AND MONTH(C.timestamp) = MONTH(DATEADD(MONTH,-1,GETDATE()))
+                    AND YEAR(C.timestamp) = YEAR(DATEADD(MONTH,-1,GETDATE()))
                     Where C.UNIQUE_REFERENCE IS NULL
                     ";
 
                 DataTable resultTable = new DataTable();
-                SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
-                adapter.Fill(resultTable);
+                using (SqlDataAdapter adapter = new SqlDataAdapter(query, connection))
+                {
+                    adapter.Fill(resultTable);
+                }
                 return resultTable;
             }
         }
@@ -51,14 +57,18 @@ namespace TheGlobalPhilanthropyTracker.Repositories
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 string query = @"
-                    SELECT TOP 3 S.FIRSTNAME + ' ' + S.LASTNAME AS [Full Name], Sum(C.AMOUNT) AS [Total Donate]
+                    SELECT TOP 3 S.SUPPORTERID AS [Supporter ID],S.FIRSTNAME + ' ' + S.LASTNAME AS [Full Name], Sum(C.AMOUNT) AS [Total Donate]
                     FROM SUPPORTERS S
                     LEFT JOIN CONTRIBUTIONS C ON S.SUPPORTERID = C.SUPPORTERID
-                    GROUP BY S.FIRSTNAME,S.LASTNAME
+                    Where MONTH(C.timestamp) = MONTH(DATEADD(MONTH,-1,GETDATE()))
+                    AND YEAR(C.timestamp) = YEAR(DATEADD(MONTH,-1,GETDATE()))
+                    GROUP BY S.SUPPORTERID, S.FIRSTNAME,S.LASTNAME
                     ORDER BY [Total Donate] DESC";
                 DataTable resultTable = new DataTable();
-                SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
-                adapter.Fill(resultTable);
+                using (SqlDataAdapter adapter = new SqlDataAdapter(query, connection))
+                {
+                    adapter.Fill(resultTable);
+                }
                 return resultTable;
             }
         }
