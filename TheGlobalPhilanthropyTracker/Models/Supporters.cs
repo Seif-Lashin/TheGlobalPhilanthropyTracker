@@ -4,7 +4,11 @@ using System.Text;
 
 namespace TheGlobalPhilanthropyTracker.Models
 {
-    internal class Supporters
+    public class Supporters
     {
+        public int SupporterId { get; set; }
+        public string FirstName { get; set; } = string.Empty;
+        public string LastName { get; set; } = string.Empty;
+        public string Email { get; set; } = string.Empty;
     }
 }
