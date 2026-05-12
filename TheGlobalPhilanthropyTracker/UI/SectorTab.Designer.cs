@@ -38,12 +38,14 @@
             // 
             // sectorsTable
             // 
+            sectorsTable.AllowUserToAddRows = false;
             sectorsTable.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             sectorsTable.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             sectorsTable.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             sectorsTable.Location = new Point(3, 349);
             sectorsTable.MultiSelect = false;
             sectorsTable.Name = "sectorsTable";
+            sectorsTable.ReadOnly = true;
             sectorsTable.RowHeadersVisible = false;
             sectorsTable.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             sectorsTable.Size = new Size(1310, 276);

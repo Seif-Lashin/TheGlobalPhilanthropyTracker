@@ -41,12 +41,14 @@
             // 
             // initiativesTable
             // 
+            initiativesTable.AllowUserToAddRows = false;
             initiativesTable.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             initiativesTable.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             initiativesTable.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             initiativesTable.Location = new Point(3, 349);
             initiativesTable.MultiSelect = false;
             initiativesTable.Name = "initiativesTable";
+            initiativesTable.ReadOnly = true;
             initiativesTable.RowHeadersVisible = false;
             initiativesTable.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             initiativesTable.Size = new Size(816, 258);

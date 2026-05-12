@@ -32,12 +32,13 @@ namespace TheGlobalPhilanthropyTracker.UI
             var repository = new InitiativeRepository();
             var initiatives = repository.GetInitiatives();
             var sectorRepository = new SectorRepository();
+                
+            var allSectors = sectorRepository.GetSectors().ToDictionary(s => s.sectorId, s => s.name);
 
             foreach (var initiative in initiatives)
             {
-                var sector = sectorRepository.GetSector(initiative.sectorId);
 
-                string sectorName = sector?.name ?? "Unknown/Deleted";
+                string sectorName = allSectors.TryGetValue(initiative.sectorId, out var name) ? name : "Unknown/Deleted";
 
                 dataTable.Rows.Add(
                     initiative.initiativeId,
@@ -110,8 +111,11 @@ namespace TheGlobalPhilanthropyTracker.UI
         {
             if (initiativesTable.CurrentRow == null || initiativesTable.CurrentRow.Index < 0) return;
 
+            var val = this.initiativesTable.CurrentRow.Cells["InitiativeID"].Value;
+            if(val == null || val == DBNull.Value) return;
+
             var repo = new InitiativeRepository();
-            var initiative = repo.GetInitiative(Convert.ToInt32(initiativesTable.CurrentRow.Cells["InitiativeID"].Value));
+            var initiative = repo.GetInitiative(Convert.ToInt32(val));
 
             if (initiative == null) return;
 

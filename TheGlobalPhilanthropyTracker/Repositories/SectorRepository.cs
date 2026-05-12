@@ -35,7 +35,7 @@ namespace TheGlobalPhilanthropyTracker.Repositories
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Exception: " + ex.Message);
+                MessageBox.Show($"Database error:\n{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             return sectors;
@@ -68,7 +68,7 @@ namespace TheGlobalPhilanthropyTracker.Repositories
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Exception: " + ex.Message);
+                MessageBox.Show($"Database error:\n{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return null;
         }
@@ -91,7 +91,7 @@ namespace TheGlobalPhilanthropyTracker.Repositories
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Exception: " + ex.Message);
+                MessageBox.Show($"Database error:\n{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -112,7 +112,7 @@ namespace TheGlobalPhilanthropyTracker.Repositories
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Exception: " + ex.Message);
+                MessageBox.Show($"Database error:\n{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -135,7 +135,7 @@ namespace TheGlobalPhilanthropyTracker.Repositories
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Exception: " + ex.Message);
+                MessageBox.Show($"Database error:\n{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
