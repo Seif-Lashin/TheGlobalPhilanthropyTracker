@@ -173,6 +173,51 @@ namespace TheGlobalPhilanthropyTracker.Repositories
             }
         }
 
+        public int GetContributionsCount(int initiativeId)
+        {
+            int count = 0;
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(DatabaseConfig.GetConnectionString()))
+                {
+                    conn.Open();
+                    string sql = "SELECT COUNT(*) FROM CONTRIBUTIONS WHERE INITIATIVEID = @initiativeId";
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@initiativeId", initiativeId);
+                        count = (int)cmd.ExecuteScalar();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Database error:\n{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return count;
+        }
+
+        public decimal GetTotalContributions(int initiativeId)
+        {
+            decimal total = 0;
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(DatabaseConfig.GetConnectionString()))
+                {
+                    conn.Open();
+                    string sql = "SELECT ISNULL(SUM(AMOUNT), 0) FROM CONTRIBUTIONS WHERE INITIATIVEID = @initiativeId";
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@initiativeId", initiativeId);
+                        total = (decimal)cmd.ExecuteScalar();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Database error:\n{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return total;
+        }
     }
 }
 

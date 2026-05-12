@@ -32,7 +32,7 @@ namespace TheGlobalPhilanthropyTracker.UI
             var repository = new InitiativeRepository();
             var initiatives = repository.GetInitiatives();
             var sectorRepository = new SectorRepository();
-                
+
             var allSectors = sectorRepository.GetSectors().ToDictionary(s => s.sectorId, s => s.name);
 
             foreach (var initiative in initiatives)
@@ -69,7 +69,7 @@ namespace TheGlobalPhilanthropyTracker.UI
 
         private void btnEditInitiative_Click(object sender, EventArgs e)
         {
-            if(this.initiativesTable.CurrentRow == null || this.initiativesTable.CurrentRow.Index < 0) return;
+            if (this.initiativesTable.CurrentRow == null || this.initiativesTable.CurrentRow.Index < 0) return;
 
             var val = this.initiativesTable.CurrentRow.Cells["InitiativeID"].Value;
             if (val == null || val == DBNull.Value) return;
@@ -96,7 +96,7 @@ namespace TheGlobalPhilanthropyTracker.UI
         private void btnDeleteInitiative_Click(object sender, EventArgs e)
         {
             if (this.initiativesTable.CurrentRow == null || this.initiativesTable.CurrentRow.Index < 0) return;
-            
+
             var val = this.initiativesTable.CurrentRow.Cells["InitiativeID"].Value;
 
             if (val == null || val == DBNull.Value) return;
@@ -109,15 +109,24 @@ namespace TheGlobalPhilanthropyTracker.UI
 
         private void initiativesTable_SelectionChanged(object sender, EventArgs e)
         {
-            if (initiativesTable.CurrentRow == null || initiativesTable.CurrentRow.Index < 0) return;
+            if (initiativesTable.CurrentRow == null || initiativesTable.CurrentRow.Index < 0)
+            {
+                this.lbCount.Text = "0";
+                this.lbTotal.Text = 0.ToString("C");
+                this.rtbSummary.Text = "Select an initiative to see details.";
+                return;
+            }
 
             var val = this.initiativesTable.CurrentRow.Cells["InitiativeID"].Value;
-            if(val == null || val == DBNull.Value) return;
+            if (val == null || val == DBNull.Value) return;
 
             var repo = new InitiativeRepository();
             var initiative = repo.GetInitiative(Convert.ToInt32(val));
 
             if (initiative == null) return;
+
+            this.lbCount.Text = repo.GetContributionsCount(initiative.initiativeId).ToString();
+            this.lbTotal.Text = repo.GetTotalContributions(initiative.initiativeId).ToString("C");
 
             if (!string.IsNullOrEmpty(initiative.impactSummaries))
             {

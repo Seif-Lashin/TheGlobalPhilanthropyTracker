@@ -35,6 +35,10 @@
             btnDeleteInitiative = new Button();
             gbSummary = new GroupBox();
             rtbSummary = new RichTextBox();
+            label2 = new Label();
+            lbCount = new Label();
+            lbTotal = new Label();
+            label5 = new Label();
             ((System.ComponentModel.ISupportInitialize)initiativesTable).BeginInit();
             gbSummary.SuspendLayout();
             SuspendLayout();
@@ -98,6 +102,10 @@
             // 
             // gbSummary
             // 
+            gbSummary.Controls.Add(label5);
+            gbSummary.Controls.Add(lbTotal);
+            gbSummary.Controls.Add(lbCount);
+            gbSummary.Controls.Add(label2);
             gbSummary.Controls.Add(rtbSummary);
             gbSummary.Location = new Point(20, 107);
             gbSummary.Name = "gbSummary";
@@ -108,12 +116,46 @@
             // 
             // rtbSummary
             // 
-            rtbSummary.Location = new Point(523, 14);
+            rtbSummary.Location = new Point(383, 14);
             rtbSummary.Name = "rtbSummary";
             rtbSummary.ReadOnly = true;
-            rtbSummary.Size = new Size(259, 157);
+            rtbSummary.Size = new Size(399, 157);
             rtbSummary.TabIndex = 0;
             rtbSummary.Text = "";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(18, 39);
+            label2.Name = "label2";
+            label2.Size = new Size(109, 15);
+            label2.TabIndex = 1;
+            label2.Text = "Total Contributions";
+            // 
+            // lbCount
+            // 
+            lbCount.AutoSize = true;
+            lbCount.Location = new Point(149, 89);
+            lbCount.Name = "lbCount";
+            lbCount.Size = new Size(0, 15);
+            lbCount.TabIndex = 2;
+            // 
+            // lbTotal
+            // 
+            lbTotal.AutoSize = true;
+            lbTotal.Location = new Point(149, 39);
+            lbTotal.Name = "lbTotal";
+            lbTotal.Size = new Size(0, 15);
+            lbTotal.TabIndex = 3;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(18, 89);
+            label5.Name = "label5";
+            label5.Size = new Size(116, 15);
+            label5.TabIndex = 4;
+            label5.Text = "Contributions Count";
             // 
             // InitiativeTab
             // 
@@ -129,6 +171,7 @@
             Size = new Size(822, 610);
             ((System.ComponentModel.ISupportInitialize)initiativesTable).EndInit();
             gbSummary.ResumeLayout(false);
+            gbSummary.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -141,5 +184,9 @@
         private Button btnDeleteInitiative;
         private GroupBox gbSummary;
         private RichTextBox rtbSummary;
+        private Label label5;
+        private Label lbTotal;
+        private Label lbCount;
+        private Label label2;
     }
 }
