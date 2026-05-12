@@ -20,13 +20,13 @@ namespace TheGlobalPhilanthropyTracker.Repositories
                     conn.Open();
 
                     string sql = "INSERT INTO EXPENDITURES (INITIATIVEID, VENDORID, AMOUNT_SPENT, DATE_SPENT) " +
-                                 "VALUES ( @initiativeId, @vendorId, @amountRaised, @dateSpent)";
+                                 "VALUES ( @initiativeId, @vendorId, @amountSpent, @dateSpent)";
 
                     using (SqlCommand cmd = new SqlCommand(sql, conn))
                     {
                         cmd.Parameters.AddWithValue("@initiativeId", e.initiativeId);
                         cmd.Parameters.AddWithValue("@vendorId", e.vendorId);
-                        cmd.Parameters.AddWithValue("@amountRaised", e.amountSpent);
+                        cmd.Parameters.AddWithValue("@amountSpent", e.amountSpent);
                         cmd.Parameters.AddWithValue("@dateSpent", e.dateSpent);
 
                         cmd.ExecuteNonQuery();
@@ -35,12 +35,14 @@ namespace TheGlobalPhilanthropyTracker.Repositories
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Exception: " + ex.ToString());
+                MessageBox.Show($"Database error:\n{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         public decimal GetInitiativeProgress(int initiativeId)
         {
+            decimal fundingTarget = 0;
+            decimal amountRaised = 0;
             try
             {
                 using (SqlConnection conn = new SqlConnection(_connectionString))
@@ -51,7 +53,6 @@ namespace TheGlobalPhilanthropyTracker.Repositories
                                        "FROM INITIATIVES " +
                                        "WHERE INITIATIVEID = @initiativeId";
 
-                    decimal fundingTarget = 0;
                     using (SqlCommand cmd = new SqlCommand(targetSql, conn))
                     {
                         cmd.Parameters.AddWithValue("@initiativeId", initiativeId);
@@ -62,13 +63,11 @@ namespace TheGlobalPhilanthropyTracker.Repositories
 
                     }
 
-                    string spentSql = "SELECT SUM(AMOUNT) " +
+                    string raisedSql = "SELECT SUM(AMOUNT) " +
                                       "FROM CONTRIBUTIONS " +
                                       "WHERE INITIATIVEID = @initiativeId";
 
-                    decimal amountRaised = 0;
-
-                    using (SqlCommand cmd = new SqlCommand(spentSql, conn))
+                    using (SqlCommand cmd = new SqlCommand(raisedSql, conn))
                     {
                         cmd.Parameters.AddWithValue("@initiativeId", initiativeId);
 
@@ -77,14 +76,13 @@ namespace TheGlobalPhilanthropyTracker.Repositories
                     }
 
                     if (fundingTarget == 0) return 0;
-                    return Math.Round((amountRaised / fundingTarget) * 100, 2);
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Exception: " + ex.ToString());
-                return 0;
+                MessageBox.Show($"Database error:\n{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            return Math.Round((amountRaised / fundingTarget) * 100, 2);
         }
 
         public DataTable GetSupporterContributions(int supporterId)
@@ -97,7 +95,7 @@ namespace TheGlobalPhilanthropyTracker.Repositories
                 {
                     conn.Open();
 
-                    string sql = "SELECT C.AMOUNT, C.TIMESTAMP, I.TITLE " +
+                    string sql = "SELECT UNIQUE_REFERENCE, C.AMOUNT, C.TIMESTAMP, I.TITLE " +
                                  "FROM CONTRIBUTIONS C " +
                                  "INNER JOIN INITIATIVES I " +
                                  "ON C.INITIATIVEID = I.INITIATIVEID " +
@@ -114,7 +112,7 @@ namespace TheGlobalPhilanthropyTracker.Repositories
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Exception: " + ex.ToString());
+                MessageBox.Show($"Database error:\n{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             return contributions;
@@ -149,7 +147,7 @@ namespace TheGlobalPhilanthropyTracker.Repositories
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Exception: " + ex.ToString());
+                MessageBox.Show($"Database error:\n{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return vendors;
         }
