@@ -89,6 +89,10 @@ namespace TheGlobalPhilanthropyTracker.UI
 
             _financeRepo.AddExpenditure(exp);
             MessageBox.Show("Expenditure added successfully!");
+
+            txtAmount.Clear();
+            cmbInitiative.SelectedIndex = -1;
+            cmbVendor.SelectedIndex = -1;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

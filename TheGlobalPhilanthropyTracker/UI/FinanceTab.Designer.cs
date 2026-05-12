@@ -55,38 +55,43 @@
             // cmbInitiative
             // 
             cmbInitiative.FormattingEnabled = true;
-            cmbInitiative.Location = new Point(148, 39);
+            cmbInitiative.Location = new Point(130, 29);
+            cmbInitiative.Margin = new Padding(3, 2, 3, 2);
             cmbInitiative.Name = "cmbInitiative";
-            cmbInitiative.Size = new Size(151, 28);
+            cmbInitiative.Size = new Size(133, 23);
             cmbInitiative.TabIndex = 0;
             // 
             // cmbVendor
             // 
             cmbVendor.FormattingEnabled = true;
-            cmbVendor.Location = new Point(148, 99);
+            cmbVendor.Location = new Point(130, 74);
+            cmbVendor.Margin = new Padding(3, 2, 3, 2);
             cmbVendor.Name = "cmbVendor";
-            cmbVendor.Size = new Size(151, 28);
+            cmbVendor.Size = new Size(133, 23);
             cmbVendor.TabIndex = 1;
             // 
             // txtAmount
             // 
-            txtAmount.Location = new Point(148, 157);
+            txtAmount.Location = new Point(130, 118);
+            txtAmount.Margin = new Padding(3, 2, 3, 2);
             txtAmount.Name = "txtAmount";
-            txtAmount.Size = new Size(151, 27);
+            txtAmount.Size = new Size(133, 23);
             txtAmount.TabIndex = 2;
             // 
             // dtpExpenditureDate
             // 
-            dtpExpenditureDate.Location = new Point(148, 220);
+            dtpExpenditureDate.Location = new Point(130, 165);
+            dtpExpenditureDate.Margin = new Padding(3, 2, 3, 2);
             dtpExpenditureDate.Name = "dtpExpenditureDate";
-            dtpExpenditureDate.Size = new Size(260, 27);
+            dtpExpenditureDate.Size = new Size(228, 23);
             dtpExpenditureDate.TabIndex = 3;
             // 
             // btnAddExpenditure
             // 
-            btnAddExpenditure.Location = new Point(256, 275);
+            btnAddExpenditure.Location = new Point(224, 206);
+            btnAddExpenditure.Margin = new Padding(3, 2, 3, 2);
             btnAddExpenditure.Name = "btnAddExpenditure";
-            btnAddExpenditure.Size = new Size(152, 29);
+            btnAddExpenditure.Size = new Size(133, 22);
             btnAddExpenditure.TabIndex = 4;
             btnAddExpenditure.Text = "Add Expenditure";
             btnAddExpenditure.UseVisualStyleBackColor = true;
@@ -95,44 +100,45 @@
             // lblInitiative
             // 
             lblInitiative.AutoSize = true;
-            lblInitiative.Location = new Point(43, 47);
+            lblInitiative.Location = new Point(38, 35);
             lblInitiative.Name = "lblInitiative";
-            lblInitiative.Size = new Size(73, 20);
+            lblInitiative.Size = new Size(58, 15);
             lblInitiative.TabIndex = 5;
             lblInitiative.Text = "Initiative: ";
             // 
             // lblVendor
             // 
             lblVendor.AutoSize = true;
-            lblVendor.Location = new Point(43, 107);
+            lblVendor.Location = new Point(38, 80);
             lblVendor.Name = "lblVendor";
-            lblVendor.Size = new Size(63, 20);
+            lblVendor.Size = new Size(50, 15);
             lblVendor.TabIndex = 6;
             lblVendor.Text = "Vendor: ";
             // 
             // lblAmount
             // 
             lblAmount.AutoSize = true;
-            lblAmount.Location = new Point(43, 164);
+            lblAmount.Location = new Point(38, 123);
             lblAmount.Name = "lblAmount";
-            lblAmount.Size = new Size(69, 20);
+            lblAmount.Size = new Size(57, 15);
             lblAmount.TabIndex = 7;
             lblAmount.Text = "Amount: ";
             // 
             // lblDate
             // 
             lblDate.AutoSize = true;
-            lblDate.Location = new Point(43, 225);
+            lblDate.Location = new Point(38, 169);
             lblDate.Name = "lblDate";
-            lblDate.Size = new Size(48, 20);
+            lblDate.Size = new Size(37, 15);
             lblDate.TabIndex = 8;
             lblDate.Text = "Date: ";
             // 
             // btnCancel
             // 
-            btnCancel.Location = new Point(43, 266);
+            btnCancel.Location = new Point(38, 200);
+            btnCancel.Margin = new Padding(3, 2, 3, 2);
             btnCancel.Name = "btnCancel";
-            btnCancel.Size = new Size(94, 29);
+            btnCancel.Size = new Size(82, 22);
             btnCancel.TabIndex = 10;
             btnCancel.Text = "Cancel";
             btnCancel.UseVisualStyleBackColor = true;
@@ -140,40 +146,43 @@
             // 
             // lblProgressInitiative
             // 
-            lblProgressInitiative.Location = new Point(634, 50);
+            lblProgressInitiative.Location = new Point(555, 38);
             lblProgressInitiative.Name = "lblProgressInitiative";
-            lblProgressInitiative.Size = new Size(86, 28);
+            lblProgressInitiative.Size = new Size(75, 21);
             lblProgressInitiative.TabIndex = 11;
             lblProgressInitiative.Text = "Initiative:";
             // 
             // cmbProgressInitiative
             // 
             cmbProgressInitiative.FormattingEnabled = true;
-            cmbProgressInitiative.Location = new Point(763, 50);
+            cmbProgressInitiative.Location = new Point(668, 38);
+            cmbProgressInitiative.Margin = new Padding(3, 2, 3, 2);
             cmbProgressInitiative.Name = "cmbProgressInitiative";
-            cmbProgressInitiative.Size = new Size(151, 28);
+            cmbProgressInitiative.Size = new Size(133, 23);
             cmbProgressInitiative.TabIndex = 12;
             // 
             // progressBarFunding
             // 
-            progressBarFunding.Location = new Point(634, 107);
+            progressBarFunding.Location = new Point(555, 80);
+            progressBarFunding.Margin = new Padding(3, 2, 3, 2);
             progressBarFunding.Name = "progressBarFunding";
-            progressBarFunding.Size = new Size(256, 29);
+            progressBarFunding.Size = new Size(224, 22);
             progressBarFunding.TabIndex = 13;
             // 
             // lblProgressPercent
             // 
-            lblProgressPercent.Location = new Point(896, 111);
+            lblProgressPercent.Location = new Point(784, 83);
             lblProgressPercent.Name = "lblProgressPercent";
-            lblProgressPercent.Size = new Size(114, 25);
+            lblProgressPercent.Size = new Size(100, 19);
             lblProgressPercent.TabIndex = 14;
             lblProgressPercent.Text = "0% funded";
             // 
             // btnCheckProgress
             // 
-            btnCheckProgress.Location = new Point(837, 164);
+            btnCheckProgress.Location = new Point(732, 123);
+            btnCheckProgress.Margin = new Padding(3, 2, 3, 2);
             btnCheckProgress.Name = "btnCheckProgress";
-            btnCheckProgress.Size = new Size(140, 29);
+            btnCheckProgress.Size = new Size(122, 22);
             btnCheckProgress.TabIndex = 15;
             btnCheckProgress.Text = "Check Progress";
             btnCheckProgress.UseVisualStyleBackColor = true;
@@ -181,25 +190,27 @@
             // 
             // lblSelectSupporter
             // 
-            lblSelectSupporter.Location = new Point(20, 421);
+            lblSelectSupporter.Location = new Point(18, 316);
             lblSelectSupporter.Name = "lblSelectSupporter";
-            lblSelectSupporter.Size = new Size(122, 25);
+            lblSelectSupporter.Size = new Size(107, 19);
             lblSelectSupporter.TabIndex = 17;
             lblSelectSupporter.Text = "Select Supporter:";
             // 
             // cmbSupporter
             // 
             cmbSupporter.FormattingEnabled = true;
-            cmbSupporter.Location = new Point(20, 464);
+            cmbSupporter.Location = new Point(18, 348);
+            cmbSupporter.Margin = new Padding(3, 2, 3, 2);
             cmbSupporter.Name = "cmbSupporter";
-            cmbSupporter.Size = new Size(151, 28);
+            cmbSupporter.Size = new Size(133, 23);
             cmbSupporter.TabIndex = 18;
             // 
             // btnReceipt
             // 
-            btnReceipt.Location = new Point(20, 512);
+            btnReceipt.Location = new Point(18, 384);
+            btnReceipt.Margin = new Padding(3, 2, 3, 2);
             btnReceipt.Name = "btnReceipt";
-            btnReceipt.Size = new Size(210, 34);
+            btnReceipt.Size = new Size(184, 26);
             btnReceipt.TabIndex = 19;
             btnReceipt.Text = "Show Contribution Receipt";
             btnReceipt.UseVisualStyleBackColor = true;
@@ -208,15 +219,16 @@
             // dgvContributions
             // 
             dgvContributions.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvContributions.Location = new Point(349, 432);
+            dgvContributions.Location = new Point(305, 324);
+            dgvContributions.Margin = new Padding(3, 2, 3, 2);
             dgvContributions.Name = "dgvContributions";
             dgvContributions.RowHeadersWidth = 51;
-            dgvContributions.Size = new Size(483, 139);
+            dgvContributions.Size = new Size(444, 162);
             dgvContributions.TabIndex = 20;
             // 
             // FinanceTab
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(dgvContributions);
             Controls.Add(btnReceipt);
@@ -237,8 +249,9 @@
             Controls.Add(txtAmount);
             Controls.Add(cmbVendor);
             Controls.Add(cmbInitiative);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "FinanceTab";
-            Size = new Size(1400, 800);
+            Size = new Size(1225, 600);
             Load += FinanceTab_Load;
             ((System.ComponentModel.ISupportInitialize)dgvContributions).EndInit();
             ResumeLayout(false);
