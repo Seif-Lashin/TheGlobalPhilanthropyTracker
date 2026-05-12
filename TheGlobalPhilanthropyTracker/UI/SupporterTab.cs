@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using TheGlobalPhilanthropyTracker.Models;
 using TheGlobalPhilanthropyTracker.Repositories;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace TheGlobalPhilanthropyTracker.UI
 {
@@ -96,6 +97,12 @@ namespace TheGlobalPhilanthropyTracker.UI
                 return;
             }
 
+            if (!email.Contains("@") || !email.Contains("."))
+            {
+                MessageBox.Show("Please enter a valid email address.");
+                return;
+            }
+
             var newSupporter = new Supporters
             {
                 FirstName = firstName,
@@ -124,6 +131,12 @@ namespace TheGlobalPhilanthropyTracker.UI
                 if (newEmail.Length > 100)
                 {
                     MessageBox.Show("Email must not exceed 100 characters.");
+                    return;
+                }
+
+                if (!newEmail.Contains("@") || !newEmail.Contains("."))
+                {
+                    MessageBox.Show("Please enter a valid email address.");
                     return;
                 }
 
