@@ -57,13 +57,13 @@ namespace TheGlobalPhilanthropyTracker.Repositories
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 string query = @"
-                    SELECT TOP 3 S.SUPPORTERID AS [Supporter ID],S.FIRSTNAME + ' ' + S.LASTNAME AS [Full Name], Sum(C.AMOUNT) AS [Total Donate]
+                    SELECT TOP 3 S.SUPPORTERID AS [Supporter ID],S.FIRSTNAME + ' ' + S.LASTNAME AS [Full Name], Sum(C.AMOUNT) AS [Total Donated]
                     FROM SUPPORTERS S
-                    LEFT JOIN CONTRIBUTIONS C ON S.SUPPORTERID = C.SUPPORTERID
+                    INNER JOIN CONTRIBUTIONS C ON S.SUPPORTERID = C.SUPPORTERID
                     Where MONTH(C.timestamp) = MONTH(DATEADD(MONTH,-1,GETDATE()))
                     AND YEAR(C.timestamp) = YEAR(DATEADD(MONTH,-1,GETDATE()))
                     GROUP BY S.SUPPORTERID, S.FIRSTNAME,S.LASTNAME
-                    ORDER BY [Total Donate] DESC";
+                    ORDER BY [Total Donated] DESC";
                 DataTable resultTable = new DataTable();
                 using (SqlDataAdapter adapter = new SqlDataAdapter(query, connection))
                 {
