@@ -4,7 +4,10 @@ using System.Text;
 
 namespace TheGlobalPhilanthropyTracker.Models
 {
-    internal class Class1
+    public class Sectors
     {
+        public int sectorId { get; set; }
+        public string name { get; set; } = "";
+        public string? description { get; set; }
     }
 }
