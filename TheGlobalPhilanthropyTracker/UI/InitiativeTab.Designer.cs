@@ -2,191 +2,224 @@
 {
     partial class InitiativeTab
     {
-        /// <summary> 
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary> 
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
-            {
                 components.Dispose();
-            }
             base.Dispose(disposing);
         }
 
         #region Component Designer generated code
 
-        /// <summary> 
-        /// Required method for Designer support - do not modify 
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             initiativesTable = new DataGridView();
             label1 = new Label();
             btnAddInitiative = new Button();
             btnEditInitiative = new Button();
             btnDeleteInitiative = new Button();
             gbSummary = new GroupBox();
-            rtbSummary = new RichTextBox();
             label2 = new Label();
-            lbCount = new Label();
             lbTotal = new Label();
             label5 = new Label();
+            lbCount = new Label();
+            rtbSummary = new RichTextBox();
+            pnlHeader = new Panel();
+            pnlToolbar = new Panel();
+            pnlSummaryWrap = new Panel();
             ((System.ComponentModel.ISupportInitialize)initiativesTable).BeginInit();
             gbSummary.SuspendLayout();
+            pnlHeader.SuspendLayout();
+            pnlToolbar.SuspendLayout();
+            pnlSummaryWrap.SuspendLayout();
             SuspendLayout();
-            // 
-            // initiativesTable
-            // 
+
+            // ── initiativesTable ──────────────────────────────────
+            // Changed from Anchor to Dock.Fill to match SectorTab behavior
+            initiativesTable.Dock = DockStyle.Fill;
+            initiativesTable.BackgroundColor = Color.FromArgb(18, 18, 24);
+            initiativesTable.BorderStyle = BorderStyle.None;
             initiativesTable.AllowUserToAddRows = false;
-            initiativesTable.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             initiativesTable.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            initiativesTable.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            initiativesTable.Location = new Point(3, 349);
-            initiativesTable.MultiSelect = false;
+
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(28, 28, 38);
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle1.ForeColor = Color.FromArgb(99, 179, 237);
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            initiativesTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            initiativesTable.ColumnHeadersHeight = 38;
+            initiativesTable.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(18, 18, 24);
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle2.ForeColor = Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(45, 75, 110);
+            dataGridViewCellStyle2.SelectionForeColor = Color.White;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            initiativesTable.DefaultCellStyle = dataGridViewCellStyle2;
+
+            initiativesTable.EnableHeadersVisualStyles = false;
             initiativesTable.Name = "initiativesTable";
-            initiativesTable.ReadOnly = true;
             initiativesTable.RowHeadersVisible = false;
             initiativesTable.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            initiativesTable.Size = new Size(816, 258);
             initiativesTable.TabIndex = 0;
             initiativesTable.SelectionChanged += initiativesTable_SelectionChanged;
-            // 
-            // label1
-            // 
-            label1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            label1.Font = new Font("Segoe UI", 26.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(3, 0);
+
+            // ── label1 ────────────────────────────────────────────
+            label1.Dock = DockStyle.Fill;
+            label1.Font = new Font("Segoe UI Semibold", 17F);
+            label1.ForeColor = Color.FromArgb(220, 220, 230);
+            label1.Location = new Point(28, 0);
             label1.Name = "label1";
-            label1.Size = new Size(819, 61);
-            label1.TabIndex = 1;
-            label1.Text = "Initiatives";
-            label1.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // btnAddInitiative
-            // 
-            btnAddInitiative.Location = new Point(20, 320);
+            label1.Size = new Size(1244, 72);
+            label1.TabIndex = 0;
+            label1.Text = "🎯  Initiatives";
+            label1.TextAlign = ContentAlignment.MiddleLeft;
+
+            // ── btnAddInitiative ──────────────────────────────────
+            btnAddInitiative.BackColor = Color.FromArgb(28, 28, 38);
+            btnAddInitiative.FlatAppearance.BorderColor = Color.FromArgb(99, 179, 237);
+            btnAddInitiative.FlatStyle = FlatStyle.Flat;
+            btnAddInitiative.ForeColor = Color.White;
+            btnAddInitiative.Location = new Point(24, 10);
             btnAddInitiative.Name = "btnAddInitiative";
-            btnAddInitiative.Size = new Size(143, 23);
-            btnAddInitiative.TabIndex = 2;
-            btnAddInitiative.Text = "Add Initiative";
-            btnAddInitiative.UseVisualStyleBackColor = true;
+            btnAddInitiative.Size = new Size(160, 36);
+            btnAddInitiative.TabIndex = 0;
+            btnAddInitiative.Text = "＋  Add Initiative";
             btnAddInitiative.Click += btnAddInitiative_Click;
-            // 
-            // btnEditInitiative
-            // 
-            btnEditInitiative.Location = new Point(169, 320);
+
+            // ── btnEditInitiative ─────────────────────────────────
+            btnEditInitiative.BackColor = Color.FromArgb(28, 28, 38);
+            btnEditInitiative.FlatAppearance.BorderColor = Color.FromArgb(45, 45, 62);
+            btnEditInitiative.FlatStyle = FlatStyle.Flat;
+            btnEditInitiative.ForeColor = Color.White;
+            btnEditInitiative.Location = new Point(200, 10);
             btnEditInitiative.Name = "btnEditInitiative";
-            btnEditInitiative.Size = new Size(143, 23);
-            btnEditInitiative.TabIndex = 3;
-            btnEditInitiative.Text = "Edit Initiative";
-            btnEditInitiative.UseVisualStyleBackColor = true;
+            btnEditInitiative.Size = new Size(160, 36);
+            btnEditInitiative.TabIndex = 1;
+            btnEditInitiative.Text = "✏  Edit Initiative";
             btnEditInitiative.Click += btnEditInitiative_Click;
-            // 
-            // btnDeleteInitiative
-            // 
-            btnDeleteInitiative.Location = new Point(318, 320);
+
+            // ── btnDeleteInitiative ───────────────────────────────
+            btnDeleteInitiative.BackColor = Color.FromArgb(50, 20, 20);
+            btnDeleteInitiative.FlatAppearance.BorderColor = Color.FromArgb(220, 80, 80);
+            btnDeleteInitiative.FlatStyle = FlatStyle.Flat;
+            btnDeleteInitiative.ForeColor = Color.White;
+            btnDeleteInitiative.Location = new Point(376, 10);
             btnDeleteInitiative.Name = "btnDeleteInitiative";
-            btnDeleteInitiative.Size = new Size(143, 23);
-            btnDeleteInitiative.TabIndex = 4;
-            btnDeleteInitiative.Text = "Delete Initiative";
-            btnDeleteInitiative.UseVisualStyleBackColor = true;
+            btnDeleteInitiative.Size = new Size(160, 36);
+            btnDeleteInitiative.TabIndex = 2;
+            btnDeleteInitiative.Text = "🗑  Delete Initiative";
             btnDeleteInitiative.Click += btnDeleteInitiative_Click;
-            // 
-            // gbSummary
-            // 
-            gbSummary.Controls.Add(label5);
-            gbSummary.Controls.Add(lbTotal);
-            gbSummary.Controls.Add(lbCount);
+
+            // ── gbSummary ─────────────────────────────────────────
+            gbSummary.BackColor = Color.FromArgb(33, 33, 46);
             gbSummary.Controls.Add(label2);
+            gbSummary.Controls.Add(lbTotal);
+            gbSummary.Controls.Add(label5);
+            gbSummary.Controls.Add(lbCount);
             gbSummary.Controls.Add(rtbSummary);
-            gbSummary.Location = new Point(20, 107);
+            gbSummary.Dock = DockStyle.Fill;
+            gbSummary.ForeColor = Color.FromArgb(99, 179, 237);
+            gbSummary.Location = new Point(24, 12);
             gbSummary.Name = "gbSummary";
-            gbSummary.Size = new Size(788, 177);
-            gbSummary.TabIndex = 5;
+            gbSummary.Size = new Size(1224, 156);
+            gbSummary.TabIndex = 0;
             gbSummary.TabStop = false;
             gbSummary.Text = "Impact Summary";
-            // 
-            // rtbSummary
-            // 
-            rtbSummary.Location = new Point(383, 14);
+
+            label2.AutoSize = true;
+            label2.ForeColor = Color.Gray;
+            label2.Location = new Point(16, 28);
+            label2.Text = "Total Contributions";
+
+            lbTotal.AutoSize = true;
+            lbTotal.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
+            lbTotal.Location = new Point(16, 48);
+
+            label5.AutoSize = true;
+            label5.ForeColor = Color.Gray;
+            label5.Location = new Point(16, 88);
+            label5.Text = "Contributions Count";
+
+            lbCount.AutoSize = true;
+            lbCount.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
+            lbCount.Location = new Point(16, 108);
+
+            rtbSummary.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            rtbSummary.BackColor = Color.FromArgb(22, 22, 32);
+            rtbSummary.BorderStyle = BorderStyle.None;
+            rtbSummary.ForeColor = Color.White;
+            rtbSummary.Location = new Point(240, 25);
             rtbSummary.Name = "rtbSummary";
             rtbSummary.ReadOnly = true;
-            rtbSummary.Size = new Size(399, 157);
-            rtbSummary.TabIndex = 0;
-            rtbSummary.Text = "";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(18, 39);
-            label2.Name = "label2";
-            label2.Size = new Size(109, 15);
-            label2.TabIndex = 1;
-            label2.Text = "Total Contributions";
-            // 
-            // lbCount
-            // 
-            lbCount.AutoSize = true;
-            lbCount.Location = new Point(149, 89);
-            lbCount.Name = "lbCount";
-            lbCount.Size = new Size(0, 15);
-            lbCount.TabIndex = 2;
-            // 
-            // lbTotal
-            // 
-            lbTotal.AutoSize = true;
-            lbTotal.Location = new Point(149, 39);
-            lbTotal.Name = "lbTotal";
-            lbTotal.Size = new Size(0, 15);
-            lbTotal.TabIndex = 3;
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Location = new Point(18, 89);
-            label5.Name = "label5";
-            label5.Size = new Size(116, 15);
-            label5.TabIndex = 4;
-            label5.Text = "Contributions Count";
-            // 
-            // InitiativeTab
-            // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(gbSummary);
-            Controls.Add(btnDeleteInitiative);
-            Controls.Add(btnEditInitiative);
-            Controls.Add(btnAddInitiative);
-            Controls.Add(label1);
+            rtbSummary.Size = new Size(960, 120); // Fixed size to fit inside gbSummary properly
+            rtbSummary.TabIndex = 4;
+
+            // ── Panels Setup ──────────────────────────────────────
+            pnlHeader.BackColor = Color.FromArgb(28, 28, 38);
+            pnlHeader.Controls.Add(label1);
+            pnlHeader.Dock = DockStyle.Top;
+            pnlHeader.Height = 72;
+            pnlHeader.Padding = new Padding(28, 0, 0, 0);
+
+            pnlToolbar.BackColor = Color.FromArgb(18, 18, 24);
+            pnlToolbar.Controls.Add(btnAddInitiative);
+            pnlToolbar.Controls.Add(btnEditInitiative);
+            pnlToolbar.Controls.Add(btnDeleteInitiative);
+            pnlToolbar.Dock = DockStyle.Top;
+            pnlToolbar.Height = 60;
+            pnlToolbar.Padding = new Padding(24, 10, 24, 0);
+
+            pnlSummaryWrap.BackColor = Color.FromArgb(18, 18, 24);
+            pnlSummaryWrap.Controls.Add(gbSummary);
+            pnlSummaryWrap.Dock = DockStyle.Top;
+            pnlSummaryWrap.Height = 180;
+            pnlSummaryWrap.Padding = new Padding(24, 12, 24, 12);
+
+            // ── InitiativeTab UserControl ─────────────────────────
+            BackColor = Color.FromArgb(18, 18, 24);
+            Size = new Size(1272, 686);
+
+            // ORDER MATTERS: Add Dock.Fill control LAST
             Controls.Add(initiativesTable);
+            Controls.Add(pnlSummaryWrap);
+            Controls.Add(pnlToolbar);
+            Controls.Add(pnlHeader);
+
             Name = "InitiativeTab";
-            Size = new Size(822, 610);
             ((System.ComponentModel.ISupportInitialize)initiativesTable).EndInit();
             gbSummary.ResumeLayout(false);
             gbSummary.PerformLayout();
+            pnlHeader.ResumeLayout(false);
+            pnlToolbar.ResumeLayout(false);
+            pnlSummaryWrap.ResumeLayout(false);
             ResumeLayout(false);
         }
 
         #endregion
 
-        private DataGridView initiativesTable;
-        private Label label1;
-        private Button btnAddInitiative;
-        private Button btnEditInitiative;
-        private Button btnDeleteInitiative;
-        private GroupBox gbSummary;
-        private RichTextBox rtbSummary;
-        private Label label5;
-        private Label lbTotal;
-        private Label lbCount;
-        private Label label2;
+        private System.Windows.Forms.DataGridView initiativesTable;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnAddInitiative;
+        private System.Windows.Forms.Button btnEditInitiative;
+        private System.Windows.Forms.Button btnDeleteInitiative;
+        private System.Windows.Forms.GroupBox gbSummary;
+        private System.Windows.Forms.RichTextBox rtbSummary;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lbTotal;
+        private System.Windows.Forms.Label lbCount;
+        private System.Windows.Forms.Label label2;
+        private Panel pnlHeader;
+        private Panel pnlToolbar;
+        private Panel pnlSummaryWrap;
     }
 }

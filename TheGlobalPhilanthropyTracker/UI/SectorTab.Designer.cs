@@ -2,107 +2,126 @@
 {
     partial class SectorTab
     {
-        /// <summary> 
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary> 
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
-            {
                 components.Dispose();
-            }
             base.Dispose(disposing);
         }
 
         #region Component Designer generated code
 
-        /// <summary> 
-        /// Required method for Designer support - do not modify 
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
+            var bg = Color.FromArgb(18, 18, 24);
+            var surface = Color.FromArgb(28, 28, 38);
+            var border = Color.FromArgb(45, 45, 62);
+            var accent = Color.FromArgb(99, 179, 237);
+            var danger = Color.FromArgb(220, 80, 80);
+            var textPri = Color.FromArgb(220, 220, 230);
+
             sectorsTable = new DataGridView();
             label1 = new Label();
             btnAddSector = new Button();
             btnEditSector = new Button();
             btnDeleteSector = new Button();
+
+            var pnlHeader = new Panel();
+            var pnlToolbar = new Panel();
+            var pnlContent = new Panel();
+
             ((System.ComponentModel.ISupportInitialize)sectorsTable).BeginInit();
             SuspendLayout();
-            // 
-            // sectorsTable
-            // 
+
+            // ── Header ────────────────────────────────────────────
+            pnlHeader.Dock = DockStyle.Top;
+            pnlHeader.Height = 72;
+            pnlHeader.BackColor = surface;
+            pnlHeader.Padding = new Padding(28, 0, 0, 0);
+
+            label1.Text = "🌐  Sectors";
+            label1.Font = new Font("Segoe UI Semibold", 17F);
+            label1.ForeColor = textPri;
+            label1.Dock = DockStyle.Fill;
+            label1.TextAlign = ContentAlignment.MiddleLeft;
+            pnlHeader.Controls.Add(label1);
+
+            // ── Toolbar ───────────────────────────────────────────
+            pnlToolbar.Dock = DockStyle.Top;
+            pnlToolbar.Height = 60;
+            pnlToolbar.BackColor = bg;
+            pnlToolbar.Padding = new Padding(24, 10, 24, 0);
+
+            void StyleBtn(Button btn, string text, Color backCol, Color borderCol, int left)
+            {
+                btn.Text = text;
+                btn.Font = new Font("Segoe UI Semibold", 9.5F);
+                btn.FlatStyle = FlatStyle.Flat;
+                btn.FlatAppearance.BorderColor = borderCol;
+                btn.FlatAppearance.BorderSize = 1;
+                btn.BackColor = backCol;
+                btn.ForeColor = textPri;
+                btn.Size = new Size(150, 36);
+                btn.Location = new Point(left, 10);
+                btn.Cursor = Cursors.Hand;
+            }
+
+            StyleBtn(btnAddSector, "＋  Add Sector", surface, accent, 0);
+            StyleBtn(btnEditSector, "✏  Edit Sector", surface, border, 166);
+            StyleBtn(btnDeleteSector, "🗑  Delete Sector", Color.FromArgb(50, 20, 20), danger, 332);
+
+            btnAddSector.MouseEnter += (s, e) => btnAddSector.BackColor = Color.FromArgb(35, 55, 75);
+            btnAddSector.MouseLeave += (s, e) => btnAddSector.BackColor = surface;
+            btnEditSector.MouseEnter += (s, e) => btnEditSector.BackColor = Color.FromArgb(40, 40, 58);
+            btnEditSector.MouseLeave += (s, e) => btnEditSector.BackColor = surface;
+            btnDeleteSector.MouseEnter += (s, e) => btnDeleteSector.BackColor = Color.FromArgb(70, 25, 25);
+            btnDeleteSector.MouseLeave += (s, e) => btnDeleteSector.BackColor = Color.FromArgb(50, 20, 20);
+
+            btnAddSector.Click += btnAddSector_Click;
+            btnEditSector.Click += btnEditSector_Click;
+            btnDeleteSector.Click += btnDeleteSector_Click;
+
+            pnlToolbar.Controls.AddRange(new Control[] { btnAddSector, btnEditSector, btnDeleteSector });
+
+            // ── Table ─────────────────────────────────────────────
+            sectorsTable.Dock = DockStyle.Fill;
             sectorsTable.AllowUserToAddRows = false;
-            sectorsTable.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             sectorsTable.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            sectorsTable.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            sectorsTable.Location = new Point(3, 349);
-            sectorsTable.MultiSelect = false;
-            sectorsTable.Name = "sectorsTable";
+            sectorsTable.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            sectorsTable.ColumnHeadersHeight = 38;
             sectorsTable.ReadOnly = true;
             sectorsTable.RowHeadersVisible = false;
+            sectorsTable.MultiSelect = false;
             sectorsTable.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            sectorsTable.Size = new Size(1310, 276);
-            sectorsTable.TabIndex = 0;
-            // 
-            // label1
-            // 
-            label1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            label1.Font = new Font("Segoe UI", 26.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(3, 0);
-            label1.Name = "label1";
-            label1.Size = new Size(1313, 61);
-            label1.TabIndex = 1;
-            label1.Text = "Sectors";
-            label1.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // btnAddSector
-            // 
-            btnAddSector.Location = new Point(16, 320);
-            btnAddSector.Name = "btnAddSector";
-            btnAddSector.Size = new Size(143, 23);
-            btnAddSector.TabIndex = 2;
-            btnAddSector.Text = "Add Sector";
-            btnAddSector.UseVisualStyleBackColor = true;
-            btnAddSector.Click += btnAddSector_Click;
-            // 
-            // btnEditSector
-            // 
-            btnEditSector.Location = new Point(165, 320);
-            btnEditSector.Name = "btnEditSector";
-            btnEditSector.Size = new Size(143, 23);
-            btnEditSector.TabIndex = 3;
-            btnEditSector.Text = "Edit Sector";
-            btnEditSector.UseVisualStyleBackColor = true;
-            btnEditSector.Click += btnEditSector_Click;
-            // 
-            // btnDeleteSector
-            // 
-            btnDeleteSector.Location = new Point(314, 320);
-            btnDeleteSector.Name = "btnDeleteSector";
-            btnDeleteSector.Size = new Size(143, 23);
-            btnDeleteSector.TabIndex = 4;
-            btnDeleteSector.Text = "Delete Sector";
-            btnDeleteSector.UseVisualStyleBackColor = true;
-            btnDeleteSector.Click += btnDeleteSector_Click;
-            // 
-            // SectorTab
-            // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(btnDeleteSector);
-            Controls.Add(btnEditSector);
-            Controls.Add(btnAddSector);
-            Controls.Add(label1);
+            sectorsTable.BackgroundColor = bg;
+            sectorsTable.BorderStyle = BorderStyle.None;
+            sectorsTable.GridColor = border;
+            sectorsTable.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            sectorsTable.EnableHeadersVisualStyles = false;
+            sectorsTable.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            sectorsTable.ColumnHeadersDefaultCellStyle.BackColor = surface;
+            sectorsTable.ColumnHeadersDefaultCellStyle.ForeColor = accent;
+            sectorsTable.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI Semibold", 9F);
+            sectorsTable.ColumnHeadersDefaultCellStyle.Padding = new Padding(10, 0, 0, 0);
+            sectorsTable.DefaultCellStyle.BackColor = bg;
+            sectorsTable.DefaultCellStyle.ForeColor = textPri;
+            sectorsTable.DefaultCellStyle.SelectionBackColor = Color.FromArgb(45, 75, 110);
+            sectorsTable.DefaultCellStyle.SelectionForeColor = Color.White;
+            sectorsTable.DefaultCellStyle.Padding = new Padding(10, 5, 10, 5);
+            sectorsTable.RowTemplate.Height = 34;
+            sectorsTable.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(22, 22, 32);
+            sectorsTable.AlternatingRowsDefaultCellStyle.ForeColor = textPri;
+
+            // ── UserControl ───────────────────────────────────────
+            BackColor = bg;
             Controls.Add(sectorsTable);
+            Controls.Add(pnlToolbar);
+            Controls.Add(pnlHeader);
             Name = "SectorTab";
-            Size = new Size(1316, 628);
+            Size = new Size(1272, 686);
+
             ((System.ComponentModel.ISupportInitialize)sectorsTable).EndInit();
             ResumeLayout(false);
         }
