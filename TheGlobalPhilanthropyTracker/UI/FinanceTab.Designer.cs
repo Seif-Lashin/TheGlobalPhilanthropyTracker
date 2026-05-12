@@ -165,9 +165,9 @@
             // 
             lblProgressPercent.Location = new Point(896, 111);
             lblProgressPercent.Name = "lblProgressPercent";
-            lblProgressPercent.Size = new Size(81, 25);
+            lblProgressPercent.Size = new Size(114, 25);
             lblProgressPercent.TabIndex = 14;
-            lblProgressPercent.Text = "lblProgressPercent";
+            lblProgressPercent.Text = "0% funded";
             // 
             // btnCheckProgress
             // 
@@ -199,16 +199,16 @@
             // 
             btnReceipt.Location = new Point(20, 512);
             btnReceipt.Name = "btnReceipt";
-            btnReceipt.Size = new Size(186, 29);
+            btnReceipt.Size = new Size(210, 34);
             btnReceipt.TabIndex = 19;
-            btnReceipt.Text = "Generate Receipt";
+            btnReceipt.Text = "Show Contribution Receipt";
             btnReceipt.UseVisualStyleBackColor = true;
             btnReceipt.Click += btnReceipt_Click;
             // 
             // dgvContributions
             // 
             dgvContributions.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvContributions.Location = new Point(256, 434);
+            dgvContributions.Location = new Point(349, 432);
             dgvContributions.Name = "dgvContributions";
             dgvContributions.RowHeadersWidth = 51;
             dgvContributions.Size = new Size(483, 139);

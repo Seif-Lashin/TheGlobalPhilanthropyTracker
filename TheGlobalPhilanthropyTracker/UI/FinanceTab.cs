@@ -13,7 +13,9 @@ namespace TheGlobalPhilanthropyTracker.UI
 {
     public partial class FinanceTab : UserControl
     {
-        private FinanceRepository _repo = new FinanceRepository();
+        private FinanceRepository _financeRepo = new FinanceRepository();
+        private InitiativeRepository _initiativeRepo = new InitiativeRepository();
+        private SupporterRepository _supporterRepo = new SupporterRepository();
         public FinanceTab()
         {
             InitializeComponent();
@@ -27,51 +29,65 @@ namespace TheGlobalPhilanthropyTracker.UI
         }
         private void LoadInitiatives()
         {
-            DataTable dt = _repo.GetInitiatives();
-            cmbInitiative.DataSource = dt;
-            cmbInitiative.DisplayMember = "TITLE";
-            cmbInitiative.ValueMember = "INITIATIVEID";
+            List<Initiatives> initiatives = _initiativeRepo.GetInitiatives();
+
+            cmbInitiative.DataSource = new List<Initiatives>(initiatives);
+            cmbInitiative.DisplayMember = "title";
+            cmbInitiative.ValueMember = "initiativeId";
             cmbInitiative.SelectedIndex = -1;
 
-            DataTable dt2 = _repo.GetInitiatives();
-            cmbProgressInitiative.DataSource = dt2;
-            cmbProgressInitiative.DisplayMember = "TITLE";
-            cmbProgressInitiative.ValueMember = "INITIATIVEID";
+            cmbProgressInitiative.DataSource = new List<Initiatives>(initiatives);
+            cmbProgressInitiative.DisplayMember = "title";
+            cmbProgressInitiative.ValueMember = "initiativeId";
             cmbProgressInitiative.SelectedIndex = -1;
         }
 
         private void LoadVendors()
         {
-            DataTable dt = _repo.GetVendors();
-            cmbVendor.DataSource = dt;
-            cmbVendor.DisplayMember = "COMPANY_NAME";
-            cmbVendor.ValueMember = "VENDORID";
+            List<Vendors> vendors = _financeRepo.GetVendors();
+            cmbVendor.DataSource = vendors;
+            cmbVendor.DisplayMember = "companyName";
+            cmbVendor.ValueMember = "vendorId";
             cmbVendor.SelectedIndex = -1;
         }
         private void LoadSupporters()
         {
-            DataTable dt = _repo.GetSupporters();
-            cmbSupporter.DataSource = dt;
-            cmbSupporter.DisplayMember = "FULLNAME";
-            cmbSupporter.ValueMember = "SUPPORTERID";
+            List<Supporters> supporters = _supporterRepo.GetAllSupporters();
+            cmbSupporter.DataSource = supporters;
+            cmbSupporter.DisplayMember = "FirstName";
+            cmbSupporter.ValueMember = "SupporterId";
             cmbSupporter.SelectedIndex = -1;
         }
 
         private void btnAddExpenditure_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtAmount.Text))
+            //Input Validation 
+            if(cmbInitiative.SelectedValue == null)
             {
-                MessageBox.Show("Please enter an amount");
+                MessageBox.Show("Please select an initiative");
                 return;
             }
+            if (cmbVendor.SelectedValue == null) {
+                MessageBox.Show("Please select a vendor");
+                return;
+            }
+            if (!decimal.TryParse(txtAmount.Text, out decimal amount)) { //'amount' stores the valid decimal
+                MessageBox.Show("Please enter a valid amount");
+                return;
+            }
+            if (amount <= 0) {
+                MessageBox.Show("Amount must be greater than zero");
+                return;
+            }
+
 
             Expenditures exp = new Expenditures();
             exp.initiativeId = (int)cmbInitiative.SelectedValue;
             exp.vendorId = (int)cmbVendor.SelectedValue;
-            exp.amountSpent = decimal.Parse(txtAmount.Text);
+            exp.amountSpent = amount;
             exp.dateSpent = dtpExpenditureDate.Value;
 
-            _repo.AddExpenditure(exp);
+            _financeRepo.AddExpenditure(exp);
             MessageBox.Show("Expenditure added successfully!");
         }
 
@@ -80,11 +96,6 @@ namespace TheGlobalPhilanthropyTracker.UI
             txtAmount.Clear();
             cmbInitiative.SelectedIndex = -1;
             cmbVendor.SelectedIndex = -1;
-        }
-
-        private void ExpTitle_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void btnCheckProgress_Click(object sender, EventArgs e)
@@ -96,10 +107,13 @@ namespace TheGlobalPhilanthropyTracker.UI
             }
 
             int initiativeId = Convert.ToInt32(cmbProgressInitiative.SelectedValue);
-            decimal progress = _repo.GetInitiativeProgress(initiativeId);
+            decimal progress = _financeRepo.GetInitiativeProgress(initiativeId);
 
-            progressBarFunding.Value = (int)Math.Min(progress, 100);
-            lblProgressPercent.Text = $"{progress}% funded";
+            int roundedProgress = (int)Math.Round(progress, MidpointRounding.AwayFromZero); //rounding properly
+            int clampedProgress = Math.Max(progressBarFunding.Minimum, Math.Min(roundedProgress, progressBarFunding.Maximum));//0 ~ roundedProgress or 100 
+           
+            progressBarFunding.Value = clampedProgress;
+            lblProgressPercent.Text = $"{clampedProgress}% funded";
         }
         private void btnReceipt_Click(object sender, EventArgs e)
         {
@@ -109,7 +123,7 @@ namespace TheGlobalPhilanthropyTracker.UI
                 return;
             }
             int supporterId = Convert.ToInt32(cmbSupporter.SelectedValue);
-            DataTable contributions = _repo.GetSupporterContributions(supporterId);
+            DataTable contributions = _financeRepo.GetSupporterContributions(supporterId);
             dgvContributions.DataSource = contributions;
         }
 

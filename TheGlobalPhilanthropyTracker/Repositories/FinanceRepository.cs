@@ -20,13 +20,13 @@ namespace TheGlobalPhilanthropyTracker.Repositories
                     conn.Open();
 
                     string sql = "INSERT INTO EXPENDITURES (INITIATIVEID, VENDORID, AMOUNT_SPENT, DATE_SPENT) " +
-                                 "VALUES ( @initiativeId, @vendorId, @amountSpent, @dateSpent)";
+                                 "VALUES ( @initiativeId, @vendorId, @amountRaised, @dateSpent)";
 
                     using (SqlCommand cmd = new SqlCommand(sql, conn))
                     {
                         cmd.Parameters.AddWithValue("@initiativeId", e.initiativeId);
                         cmd.Parameters.AddWithValue("@vendorId", e.vendorId);
-                        cmd.Parameters.AddWithValue("@amountSpent", e.amountSpent);
+                        cmd.Parameters.AddWithValue("@amountRaised", e.amountSpent);
                         cmd.Parameters.AddWithValue("@dateSpent", e.dateSpent);
 
                         cmd.ExecuteNonQuery();
@@ -35,7 +35,7 @@ namespace TheGlobalPhilanthropyTracker.Repositories
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message);
+                Console.WriteLine("Exception: " + ex.ToString());
             }
         }
 
@@ -62,27 +62,27 @@ namespace TheGlobalPhilanthropyTracker.Repositories
 
                     }
 
-                    string spentSql = "SELECT SUM(AMOUNT_SPENT) " +
-                                      "FROM EXPENDITURES " +
+                    string spentSql = "SELECT SUM(AMOUNT) " +
+                                      "FROM CONTRIBUTIONS " +
                                       "WHERE INITIATIVEID = @initiativeId";
 
-                    decimal amountSpent = 0;
+                    decimal amountRaised = 0;
 
                     using (SqlCommand cmd = new SqlCommand(spentSql, conn))
                     {
                         cmd.Parameters.AddWithValue("@initiativeId", initiativeId);
 
                         var result = cmd.ExecuteScalar();
-                        amountSpent = result == DBNull.Value ? 0 : Convert.ToDecimal(result);
+                        amountRaised = result == DBNull.Value ? 0 : Convert.ToDecimal(result);
                     }
 
                     if (fundingTarget == 0) return 0;
-                    return Math.Round((amountSpent / fundingTarget) * 100, 2);
+                    return Math.Round((amountRaised / fundingTarget) * 100, 2);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message);
+                Console.WriteLine("Exception: " + ex.ToString());
                 return 0;
             }
         }
@@ -114,43 +114,15 @@ namespace TheGlobalPhilanthropyTracker.Repositories
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message);
+                Console.WriteLine("Exception: " + ex.ToString());
             }
 
             return contributions;
 
         }
-
-        //Get the initiatives, vendors & Supporters for the Dropdown lists
-        //Runs SQL query, take all the rows it returns, and put them into a C# DataTable.
-        public DataTable GetInitiatives()
+        public List<Vendors> GetVendors()
         {
-            DataTable dt = new DataTable();
-            try
-            {
-                using (SqlConnection conn = new SqlConnection(_connectionString))
-                {
-                    conn.Open();
-
-                    string sql = "SELECT INITIATIVEID, TITLE FROM INITIATIVES";
-
-                    using (SqlCommand cmd = new SqlCommand(sql, conn))
-                    {
-                        SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-                        adapter.Fill(dt);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error: " + ex.Message);
-            }
-            return dt;
-        }
-
-        public DataTable GetVendors()
-        {
-            DataTable dt = new DataTable();
+            List<Vendors> vendors = new List<Vendors>();
             try
             {
                 using (SqlConnection conn = new SqlConnection(_connectionString))
@@ -161,41 +133,25 @@ namespace TheGlobalPhilanthropyTracker.Repositories
 
                     using (SqlCommand cmd = new SqlCommand(sql, conn))
                     {
-                        SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-                        adapter.Fill(dt);
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                vendors.Add(new Vendors
+                                {
+                                    vendorId = Convert.ToInt32(reader["VENDORID"]),
+                                    companyName = reader["COMPANY_NAME"].ToString()
+                                });
+                            }
+                        }
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message);
+                Console.WriteLine("Exception: " + ex.ToString());
             }
-            return dt;
-        }
-
-        public DataTable GetSupporters()
-        {
-            DataTable dt = new DataTable();
-            try
-            {
-                using (SqlConnection conn = new SqlConnection(_connectionString))
-                {
-                    conn.Open();
-
-                    string sql = "SELECT SUPPORTERID, FIRSTNAME + ' ' + LASTNAME AS FULLNAME FROM SUPPORTERS";
-
-                    using (SqlCommand cmd = new SqlCommand(sql, conn))
-                    {
-                        SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-                        adapter.Fill(dt);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error: " + ex.Message);
-            }
-            return dt;
+            return vendors;
         }
     }
 }
