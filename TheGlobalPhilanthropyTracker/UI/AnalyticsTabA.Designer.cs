@@ -10,6 +10,23 @@
                 components.Dispose();
             base.Dispose(disposing);
         }
+        private void ApplyButtonHover(object sender, EventArgs e)
+        {
+            if (sender is Button btn)
+            {
+                btn.BackColor = Color.FromArgb(40, 40, 58);
+                btn.FlatAppearance.BorderColor = Color.FromArgb(99, 179, 237);
+            }
+        }
+
+        private void RemoveButtonHover(object sender, EventArgs e)
+        {
+            if (sender is Button btn)
+            {
+                btn.BackColor = Color.FromArgb(28, 28, 38);
+                btn.FlatAppearance.BorderColor = Color.FromArgb(45, 45, 62);
+            }
+        }
 
         private void InitializeComponent()
         {
@@ -56,27 +73,47 @@
             pnlButtons.Padding = new Padding(24, 12, 24, 0);
 
             // Helper: styled button
-            void StyleBtn(Button btn, string text, int left)
-            {
-                btn.Text = text;
-                btn.Font = btnFont;
-                btn.FlatStyle = FlatStyle.Flat;
-                btn.FlatAppearance.BorderColor = border;
-                btn.FlatAppearance.BorderSize = 1;
-                btn.BackColor = surface;
-                btn.ForeColor = textPri;
-                btn.Size = new Size(220, 40);
-                btn.Location = new Point(left, 12);
-                btn.Cursor = Cursors.Hand;
-                btn.TabStop = false;
+            btnTopSector.Text = "🏆  Top Sector";
+            btnTopSector.Font = btnFont;
+            btnTopSector.FlatStyle = FlatStyle.Flat;
+            btnTopSector.FlatAppearance.BorderColor = border;
+            btnTopSector.FlatAppearance.BorderSize = 1;
+            btnTopSector.BackColor = surface;
+            btnTopSector.ForeColor = textPri;
+            btnTopSector.Size = new Size(220, 40);
+            btnTopSector.Location = new Point(0, 12);
+            btnTopSector.Cursor = Cursors.Hand;
+            btnTopSector.TabStop = false;
+            btnTopSector.MouseEnter += ApplyButtonHover;
+            btnTopSector.MouseLeave += RemoveButtonHover;
 
-                btn.MouseEnter += (s, e) => { btn.BackColor = Color.FromArgb(40, 40, 58); btn.FlatAppearance.BorderColor = accent; };
-                btn.MouseLeave += (s, e) => { btn.BackColor = surface; btn.FlatAppearance.BorderColor = border; };
-            }
+            btnInactive.Text = "💤  Inactive Initiatives";
+            btnInactive.Font = btnFont;
+            btnInactive.FlatStyle = FlatStyle.Flat;
+            btnInactive.FlatAppearance.BorderColor = border;
+            btnInactive.FlatAppearance.BorderSize = 1;
+            btnInactive.BackColor = surface;
+            btnInactive.ForeColor = textPri;
+            btnInactive.Size = new Size(220, 40);
+            btnInactive.Location = new Point(236, 12);
+            btnInactive.Cursor = Cursors.Hand;
+            btnInactive.TabStop = false;
+            btnInactive.MouseEnter += ApplyButtonHover;
+            btnInactive.MouseLeave += RemoveButtonHover;
 
-            StyleBtn(btnTopSector, "🏆  Top Sector", 0);
-            StyleBtn(btnInactive, "💤  Inactive Initiatives", 236);
-            StyleBtn(btnTopContributor, "💰  Top Contributor", 472);
+            btnTopContributor.Text = "💰  Top Contributor";
+            btnTopContributor.Font = btnFont;
+            btnTopContributor.FlatStyle = FlatStyle.Flat;
+            btnTopContributor.FlatAppearance.BorderColor = border;
+            btnTopContributor.FlatAppearance.BorderSize = 1;
+            btnTopContributor.BackColor = surface;
+            btnTopContributor.ForeColor = textPri;
+            btnTopContributor.Size = new Size(220, 40);
+            btnTopContributor.Location = new Point(472, 12);
+            btnTopContributor.Cursor = Cursors.Hand;
+            btnTopContributor.TabStop = false;
+            btnTopContributor.MouseEnter += ApplyButtonHover;
+            btnTopContributor.MouseLeave += RemoveButtonHover;
 
             btnTopSector.Click += btnTopSector_Click;
             btnInactive.Click += btnInactive_Click;

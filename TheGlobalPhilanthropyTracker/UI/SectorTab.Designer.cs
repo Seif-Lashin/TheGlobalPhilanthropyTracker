@@ -1,4 +1,6 @@
-﻿namespace TheGlobalPhilanthropyTracker.UI
+﻿using static System.Net.Mime.MediaTypeNames;
+
+namespace TheGlobalPhilanthropyTracker.UI
 {
     partial class SectorTab
     {
@@ -12,6 +14,8 @@
         }
 
         #region Component Designer generated code
+
+        
 
         private void InitializeComponent()
         {
@@ -42,7 +46,7 @@
             pnlHeader.Padding = new Padding(28, 0, 0, 0);
 
             label1.Text = "🌐  Sectors";
-            label1.Font = new Font("Segoe UI Semibold", 17F);
+            label1.Font = new System.Drawing.Font("Segoe UI Semibold", 17F);
             label1.ForeColor = textPri;
             label1.Dock = DockStyle.Fill;
             label1.TextAlign = ContentAlignment.MiddleLeft;
@@ -54,30 +58,45 @@
             pnlToolbar.BackColor = bg;
             pnlToolbar.Padding = new Padding(24, 10, 24, 0);
 
-            void StyleBtn(Button btn, string text, Color backCol, Color borderCol, int left)
-            {
-                btn.Text = text;
-                btn.Font = new Font("Segoe UI Semibold", 9.5F);
-                btn.FlatStyle = FlatStyle.Flat;
-                btn.FlatAppearance.BorderColor = borderCol;
-                btn.FlatAppearance.BorderSize = 1;
-                btn.BackColor = backCol;
-                btn.ForeColor = textPri;
-                btn.Size = new Size(150, 36);
-                btn.Location = new Point(left, 10);
-                btn.Cursor = Cursors.Hand;
-            }
+            btnAddSector.Text = "＋  Add Sector";
+            btnAddSector.Font = new System.Drawing.Font("Segoe UI Semibold", 9.5F);
+            btnAddSector.FlatStyle = FlatStyle.Flat;
+            btnAddSector.FlatAppearance.BorderColor = accent;
+            btnAddSector.FlatAppearance.BorderSize = 1;
+            btnAddSector.BackColor = surface;
+            btnAddSector.ForeColor = textPri;
+            btnAddSector.Size = new Size(150, 36);
+            btnAddSector.Location = new Point(0, 10);
+            btnAddSector.Cursor = Cursors.Hand;
 
-            StyleBtn(btnAddSector, "＋  Add Sector", surface, accent, 0);
-            StyleBtn(btnEditSector, "✏  Edit Sector", surface, border, 166);
-            StyleBtn(btnDeleteSector, "🗑  Delete Sector", Color.FromArgb(50, 20, 20), danger, 332);
+            btnEditSector.Text = "✏  Edit Sector";
+            btnEditSector.Font = new System.Drawing.Font("Segoe UI Semibold", 9.5F);
+            btnEditSector.FlatStyle = FlatStyle.Flat;
+            btnEditSector.FlatAppearance.BorderColor = border;
+            btnEditSector.FlatAppearance.BorderSize = 1;
+            btnEditSector.BackColor = surface;
+            btnEditSector.ForeColor = textPri;
+            btnEditSector.Size = new Size(150, 36);
+            btnEditSector.Location = new Point(166, 10);
+            btnEditSector.Cursor = Cursors.Hand;
 
-            btnAddSector.MouseEnter += (s, e) => btnAddSector.BackColor = Color.FromArgb(35, 55, 75);
-            btnAddSector.MouseLeave += (s, e) => btnAddSector.BackColor = surface;
-            btnEditSector.MouseEnter += (s, e) => btnEditSector.BackColor = Color.FromArgb(40, 40, 58);
-            btnEditSector.MouseLeave += (s, e) => btnEditSector.BackColor = surface;
-            btnDeleteSector.MouseEnter += (s, e) => btnDeleteSector.BackColor = Color.FromArgb(70, 25, 25);
-            btnDeleteSector.MouseLeave += (s, e) => btnDeleteSector.BackColor = Color.FromArgb(50, 20, 20);
+            btnDeleteSector.Text = "🗑  Delete Sector";
+            btnDeleteSector.Font = new System.Drawing.Font("Segoe UI Semibold", 9.5F);
+            btnDeleteSector.FlatStyle = FlatStyle.Flat;
+            btnDeleteSector.FlatAppearance.BorderColor = danger;
+            btnDeleteSector.FlatAppearance.BorderSize = 1;
+            btnDeleteSector.BackColor = Color.FromArgb(50, 20, 20);
+            btnDeleteSector.ForeColor = textPri;
+            btnDeleteSector.Size = new Size(150, 36);
+            btnDeleteSector.Location = new Point(332, 10);
+            btnDeleteSector.Cursor = Cursors.Hand;
+
+            btnAddSector.FlatAppearance.MouseOverBackColor = Color.FromArgb(35, 55, 75);
+            btnAddSector.FlatAppearance.MouseDownBackColor = surface;
+            btnEditSector.FlatAppearance.MouseOverBackColor = Color.FromArgb(40, 40, 58);
+            btnEditSector.FlatAppearance.MouseDownBackColor = surface;
+            btnDeleteSector.FlatAppearance.MouseOverBackColor = Color.FromArgb(70, 25, 25);
+            btnDeleteSector.FlatAppearance.MouseDownBackColor = Color.FromArgb(50, 20, 20);
 
             btnAddSector.Click += btnAddSector_Click;
             btnEditSector.Click += btnEditSector_Click;
@@ -103,7 +122,7 @@
             sectorsTable.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
             sectorsTable.ColumnHeadersDefaultCellStyle.BackColor = surface;
             sectorsTable.ColumnHeadersDefaultCellStyle.ForeColor = accent;
-            sectorsTable.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI Semibold", 9F);
+            sectorsTable.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             sectorsTable.ColumnHeadersDefaultCellStyle.Padding = new Padding(10, 0, 0, 0);
             sectorsTable.DefaultCellStyle.BackColor = bg;
             sectorsTable.DefaultCellStyle.ForeColor = textPri;

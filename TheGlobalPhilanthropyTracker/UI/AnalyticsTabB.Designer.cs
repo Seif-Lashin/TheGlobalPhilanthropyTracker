@@ -11,6 +11,24 @@
             base.Dispose(disposing);
         }
 
+        private void ApplyButtonHover(object sender, EventArgs e)
+        {
+            if (sender is Button btn)
+            {
+                btn.BackColor = Color.FromArgb(40, 40, 58);
+                btn.FlatAppearance.BorderColor = Color.FromArgb(99, 179, 237);
+            }
+        }
+
+        private void RemoveButtonHover(object sender, EventArgs e)
+        {
+            if (sender is Button btn)
+            {
+                btn.BackColor = Color.FromArgb(28, 28, 38);
+                btn.FlatAppearance.BorderColor = Color.FromArgb(45, 45, 62);
+            }
+        }
+
         private void InitializeComponent()
         {
             var bg = Color.FromArgb(18, 18, 24);
@@ -53,27 +71,47 @@
             pnlButtons.BackColor = bg;
             pnlButtons.Padding = new Padding(24, 12, 24, 0);
 
-            void StyleBtn(Button btn, string text, int left)
-            {
-                btn.Text = text;
-                btn.Font = btnFont;
-                btn.FlatStyle = FlatStyle.Flat;
-                btn.FlatAppearance.BorderColor = border;
-                btn.FlatAppearance.BorderSize = 1;
-                btn.BackColor = surface;
-                btn.ForeColor = textPri;
-                btn.Size = new Size(220, 40);
-                btn.Location = new Point(left, 12);
-                btn.Cursor = Cursors.Hand;
-                btn.TabStop = false;
+            btnUnspentInitiatives.Text = "💸  Unspent Initiatives";
+            btnUnspentInitiatives.Font = btnFont;
+            btnUnspentInitiatives.FlatStyle = FlatStyle.Flat;
+            btnUnspentInitiatives.FlatAppearance.BorderColor = border;
+            btnUnspentInitiatives.FlatAppearance.BorderSize = 1;
+            btnUnspentInitiatives.BackColor = surface;
+            btnUnspentInitiatives.ForeColor = textPri;
+            btnUnspentInitiatives.Size = new Size(220, 40);
+            btnUnspentInitiatives.Location = new Point(0, 12);
+            btnUnspentInitiatives.Cursor = Cursors.Hand;
+            btnUnspentInitiatives.TabStop = false;
+            btnUnspentInitiatives.MouseEnter += ApplyButtonHover;
+            btnUnspentInitiatives.MouseLeave += RemoveButtonHover;
 
-                btn.MouseEnter += (s, e) => { btn.BackColor = Color.FromArgb(40, 40, 58); btn.FlatAppearance.BorderColor = accent; };
-                btn.MouseLeave += (s, e) => { btn.BackColor = surface; btn.FlatAppearance.BorderColor = border; };
-            }
+            btnRecentActivity.Text = "🕐  Recent Activity";
+            btnRecentActivity.Font = btnFont;
+            btnRecentActivity.FlatStyle = FlatStyle.Flat;
+            btnRecentActivity.FlatAppearance.BorderColor = border;
+            btnRecentActivity.FlatAppearance.BorderSize = 1;
+            btnRecentActivity.BackColor = surface;
+            btnRecentActivity.ForeColor = textPri;
+            btnRecentActivity.Size = new Size(220, 40);
+            btnRecentActivity.Location = new Point(236, 12);
+            btnRecentActivity.Cursor = Cursors.Hand;
+            btnRecentActivity.TabStop = false;
+            btnRecentActivity.MouseEnter += ApplyButtonHover;
+            btnRecentActivity.MouseLeave += RemoveButtonHover;
 
-            StyleBtn(btnUnspentInitiatives, "💸  Unspent Initiatives", 0);
-            StyleBtn(btnRecentActivity, "🕐  Recent Activity", 236);
-            StyleBtn(btnSupporterProfiles, "👤  Supporter Profiles", 472);
+            btnSupporterProfiles.Text = "👤  Supporter Profiles";
+            btnSupporterProfiles.Font = btnFont;
+            btnSupporterProfiles.FlatStyle = FlatStyle.Flat;
+            btnSupporterProfiles.FlatAppearance.BorderColor = border;
+            btnSupporterProfiles.FlatAppearance.BorderSize = 1;
+            btnSupporterProfiles.BackColor = surface;
+            btnSupporterProfiles.ForeColor = textPri;
+            btnSupporterProfiles.Size = new Size(220, 40);
+            btnSupporterProfiles.Location = new Point(472, 12);
+            btnSupporterProfiles.Cursor = Cursors.Hand;
+            btnSupporterProfiles.TabStop = false;
+            btnSupporterProfiles.MouseEnter += ApplyButtonHover;
+            btnSupporterProfiles.MouseLeave += RemoveButtonHover;
 
             btnUnspentInitiatives.Click += btnUnspentInitiatives_Click;
             btnRecentActivity.Click += btnRecentActivity_Click;

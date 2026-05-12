@@ -15,256 +15,270 @@
 
         private void InitializeComponent()
         {
-            // ── Colour palette (matches SectorTab / AnalyticsTabA) ─────────
-            var bg = Color.FromArgb(18, 18, 24);
-            var surface = Color.FromArgb(28, 28, 38);
-            var border = Color.FromArgb(45, 45, 62);
-            var accent = Color.FromArgb(99, 179, 237);
-            var danger = Color.FromArgb(220, 80, 80);
-            var textPri = Color.FromArgb(220, 220, 230);
-            var textMuted = Color.FromArgb(150, 150, 170);
-            var inputBg = Color.FromArgb(22, 22, 32);
-            var groupBg = Color.FromArgb(28, 28, 38);
+            this.dgvSupporters = new System.Windows.Forms.DataGridView();
+            this.txtFirstName = new System.Windows.Forms.TextBox();
+            this.txtLastName = new System.Windows.Forms.TextBox();
+            this.txtEmail = new System.Windows.Forms.TextBox();
+            this.btnRegister = new System.Windows.Forms.Button();
+            this.btnUpdateEmail = new System.Windows.Forms.Button();
+            this.btnRemove = new System.Windows.Forms.Button();
+            this.cmbInitiative = new System.Windows.Forms.ComboBox();
+            this.txtAmount = new System.Windows.Forms.TextBox();
+            this.btnSubmitContribution = new System.Windows.Forms.Button();
+            this.lblFirstName = new System.Windows.Forms.Label();
+            this.lblLastName = new System.Windows.Forms.Label();
+            this.lblEmail = new System.Windows.Forms.Label();
+            this.lblInitiative = new System.Windows.Forms.Label();
+            this.lblAmount = new System.Windows.Forms.Label();
+            this.pnlHeader = new System.Windows.Forms.Panel();
+            this.lblTitle = new System.Windows.Forms.Label();
+            this.pnlBottom = new System.Windows.Forms.Panel();
+            this.gbRegistration = new System.Windows.Forms.GroupBox();
+            this.gbContribution = new System.Windows.Forms.GroupBox();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSupporters)).BeginInit();
+            this.pnlHeader.SuspendLayout();
+            this.pnlBottom.SuspendLayout();
+            this.gbRegistration.SuspendLayout();
+            this.gbContribution.SuspendLayout();
+            this.SuspendLayout();
 
-            dgvSupporters = new DataGridView();
-            txtFirstName = new TextBox();
-            txtLastName = new TextBox();
-            txtEmail = new TextBox();
-            btnRegister = new Button();
-            btnUpdateEmail = new Button();
-            btnRemove = new Button();
-            cmbInitiative = new ComboBox();
-            txtAmount = new TextBox();
-            btnSubmitContribution = new Button();
-            lblFirstName = new Label();
-            lblLastName = new Label();
-            lblEmail = new Label();
-            lblInitiative = new Label();
-            lblAmount = new Label();
+            // Colors
+            System.Drawing.Color bg = System.Drawing.Color.FromArgb(18, 18, 24);
+            System.Drawing.Color surface = System.Drawing.Color.FromArgb(28, 28, 38);
+            System.Drawing.Color border = System.Drawing.Color.FromArgb(45, 45, 62);
+            System.Drawing.Color accent = System.Drawing.Color.FromArgb(99, 179, 237);
+            System.Drawing.Color danger = System.Drawing.Color.FromArgb(220, 80, 80);
+            System.Drawing.Color textPri = System.Drawing.Color.FromArgb(220, 220, 230);
+            System.Drawing.Color textMuted = System.Drawing.Color.FromArgb(150, 150, 170);
+            System.Drawing.Color inputBg = System.Drawing.Color.FromArgb(22, 22, 32);
 
-            var pnlHeader = new Panel();
-            var lblTitle = new Label();
-            var pnlBottom = new Panel();
-            var gbRegistration = new GroupBox();
-            var gbContribution = new GroupBox();
+            // pnlHeader
+            this.pnlHeader.BackColor = surface;
+            this.pnlHeader.Controls.Add(this.lblTitle);
+            this.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlHeader.Location = new System.Drawing.Point(0, 0);
+            this.pnlHeader.Name = "pnlHeader";
+            this.pnlHeader.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
+            this.pnlHeader.Size = new System.Drawing.Size(1272, 72);
+            this.pnlHeader.TabIndex = 0;
 
-            ((System.ComponentModel.ISupportInitialize)dgvSupporters).BeginInit();
-            gbRegistration.SuspendLayout();
-            gbContribution.SuspendLayout();
-            pnlBottom.SuspendLayout();
-            pnlHeader.SuspendLayout();
-            SuspendLayout();
+            // lblTitle
+            this.lblTitle.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblTitle.Font = new System.Drawing.Font("Segoe UI Semibold", 17F);
+            this.lblTitle.ForeColor = textPri;
+            this.lblTitle.Location = new System.Drawing.Point(28, 0);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(1244, 72);
+            this.lblTitle.TabIndex = 0;
+            this.lblTitle.Text = "🤝  Supporters";
+            this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 
-            // ── Helpers ───────────────────────────────────────────────────
-            void StyleLabel(Label lbl, string text, int x, int y)
-            {
-                lbl.Text = text;
-                lbl.AutoSize = true;
-                lbl.ForeColor = textMuted;
-                lbl.Font = new Font("Segoe UI", 8.5F);
-                lbl.Location = new Point(x, y);
-            }
+            // dgvSupporters
+            this.dgvSupporters.AllowUserToAddRows = false;
+            this.dgvSupporters.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(22, 22, 32);
+            this.dgvSupporters.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvSupporters.BackgroundColor = bg;
+            this.dgvSupporters.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvSupporters.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.dgvSupporters.ColumnHeadersDefaultCellStyle.BackColor = surface;
+            this.dgvSupporters.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
+            this.dgvSupporters.ColumnHeadersDefaultCellStyle.ForeColor = accent;
+            this.dgvSupporters.ColumnHeadersHeight = 38;
+            this.dgvSupporters.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dgvSupporters.DefaultCellStyle.BackColor = bg;
+            this.dgvSupporters.DefaultCellStyle.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.dgvSupporters.DefaultCellStyle.ForeColor = textPri;
+            this.dgvSupporters.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.FromArgb(45, 75, 110);
+            this.dgvSupporters.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvSupporters.EnableHeadersVisualStyles = false;
+            this.dgvSupporters.GridColor = border;
+            this.dgvSupporters.Location = new System.Drawing.Point(0, 72);
+            this.dgvSupporters.MultiSelect = false;
+            this.dgvSupporters.Name = "dgvSupporters";
+            this.dgvSupporters.ReadOnly = true;
+            this.dgvSupporters.RowHeadersVisible = false;
+            this.dgvSupporters.RowTemplate.Height = 34;
+            this.dgvSupporters.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvSupporters.Size = new System.Drawing.Size(1272, 466);
+            this.dgvSupporters.TabIndex = 1;
 
-            void StyleTextBox(TextBox tb, int x, int y, int w = 160)
-            {
-                tb.BackColor = inputBg;
-                tb.ForeColor = textPri;
-                tb.BorderStyle = BorderStyle.FixedSingle;
-                tb.Font = new Font("Segoe UI", 9F);
-                tb.Location = new Point(x, y);
-                tb.Size = new Size(w, 23);
-            }
+            // pnlBottom
+            this.pnlBottom.BackColor = bg;
+            this.pnlBottom.Controls.Add(this.gbRegistration);
+            this.pnlBottom.Controls.Add(this.gbContribution);
+            this.pnlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pnlBottom.Location = new System.Drawing.Point(0, 538);
+            this.pnlBottom.Name = "pnlBottom";
+            this.pnlBottom.Padding = new System.Windows.Forms.Padding(8);
+            this.pnlBottom.Size = new System.Drawing.Size(1272, 148);
+            this.pnlBottom.TabIndex = 2;
 
-            void StyleComboBox(ComboBox cmb, int x, int y, int w = 200)
-            {
-                cmb.BackColor = inputBg;
-                cmb.ForeColor = textPri;
-                cmb.FlatStyle = FlatStyle.Flat;
-                cmb.Font = new Font("Segoe UI", 9F);
-                cmb.FormattingEnabled = true;
-                cmb.Location = new Point(x, y);
-                cmb.Size = new Size(w, 23);
-            }
+            // gbRegistration
+            this.gbRegistration.BackColor = surface;
+            this.gbRegistration.Controls.Add(this.btnRemove);
+            this.gbRegistration.Controls.Add(this.btnUpdateEmail);
+            this.gbRegistration.Controls.Add(this.btnRegister);
+            this.gbRegistration.Controls.Add(this.txtEmail);
+            this.gbRegistration.Controls.Add(this.lblEmail);
+            this.gbRegistration.Controls.Add(this.txtLastName);
+            this.gbRegistration.Controls.Add(this.lblLastName);
+            this.gbRegistration.Controls.Add(this.txtFirstName);
+            this.gbRegistration.Controls.Add(this.lblFirstName);
+            this.gbRegistration.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.gbRegistration.ForeColor = accent;
+            this.gbRegistration.Location = new System.Drawing.Point(16, 12);
+            this.gbRegistration.Name = "gbRegistration";
+            this.gbRegistration.Size = new System.Drawing.Size(700, 120);
+            this.gbRegistration.TabIndex = 0;
+            this.gbRegistration.TabStop = false;
+            this.gbRegistration.Text = "Register / Manage Supporter";
 
-            void StyleButton(Button btn, string text, Color back, Color bord, int x, int y, int w = 140)
-            {
-                btn.Text = text;
-                btn.Font = new Font("Segoe UI Semibold", 9F);
-                btn.FlatStyle = FlatStyle.Flat;
-                btn.FlatAppearance.BorderColor = bord;
-                btn.FlatAppearance.BorderSize = 1;
-                btn.BackColor = back;
-                btn.ForeColor = Color.White;
-                btn.Location = new Point(x, y);
-                btn.Size = new Size(w, 32);
-                btn.Cursor = Cursors.Hand;
-                btn.UseVisualStyleBackColor = false;
+            // FirstName Controls
+            this.lblFirstName.AutoSize = true;
+            this.lblFirstName.ForeColor = textMuted;
+            this.lblFirstName.Location = new System.Drawing.Point(14, 28);
+            this.lblFirstName.Text = "First Name";
+            this.txtFirstName.BackColor = inputBg;
+            this.txtFirstName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtFirstName.ForeColor = textPri;
+            this.txtFirstName.Location = new System.Drawing.Point(14, 46);
+            this.txtFirstName.Size = new System.Drawing.Size(160, 23);
 
-                btn.MouseEnter += (s, e) => btn.BackColor = Color.FromArgb(
-                    Math.Min(back.R + 18, 255),
-                    Math.Min(back.G + 18, 255),
-                    Math.Min(back.B + 18, 255));
-                btn.MouseLeave += (s, e) => btn.BackColor = back;
-            }
+            // LastName Controls
+            this.lblLastName.AutoSize = true;
+            this.lblLastName.ForeColor = textMuted;
+            this.lblLastName.Location = new System.Drawing.Point(190, 28);
+            this.lblLastName.Text = "Last Name";
+            this.txtLastName.BackColor = inputBg;
+            this.txtLastName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtLastName.ForeColor = textPri;
+            this.txtLastName.Location = new System.Drawing.Point(190, 46);
+            this.txtLastName.Size = new System.Drawing.Size(160, 23);
 
-            // ── Header panel ──────────────────────────────────────────────
-            pnlHeader.Dock = DockStyle.Top;
-            pnlHeader.Height = 72;
-            pnlHeader.BackColor = surface;
-            pnlHeader.Padding = new Padding(28, 0, 0, 0);
+            // Email Controls
+            this.lblEmail.AutoSize = true;
+            this.lblEmail.ForeColor = textMuted;
+            this.lblEmail.Location = new System.Drawing.Point(366, 28);
+            this.lblEmail.Text = "Email";
+            this.txtEmail.BackColor = inputBg;
+            this.txtEmail.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtEmail.ForeColor = textPri;
+            this.txtEmail.Location = new System.Drawing.Point(366, 46);
+            this.txtEmail.Size = new System.Drawing.Size(210, 23);
 
-            lblTitle.Text = "🤝  Supporters";
-            lblTitle.Font = new Font("Segoe UI Semibold", 17F);
-            lblTitle.ForeColor = textPri;
-            lblTitle.Dock = DockStyle.Fill;
-            lblTitle.TextAlign = ContentAlignment.MiddleLeft;
-            pnlHeader.Controls.Add(lblTitle);
+            // Registration Buttons
+            this.btnRegister.BackColor = surface;
+            this.btnRegister.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRegister.FlatAppearance.BorderColor = accent;
+            this.btnRegister.ForeColor = System.Drawing.Color.White;
+            this.btnRegister.Location = new System.Drawing.Point(14, 80);
+            this.btnRegister.Size = new System.Drawing.Size(138, 32);
+            this.btnRegister.Text = "＋  Register";
+            this.btnRegister.Click += new System.EventHandler(this.btnRegister_Click);
 
-            // ── DataGridView ──────────────────────────────────────────────
-            dgvSupporters.Dock = DockStyle.Fill;
-            dgvSupporters.AllowUserToAddRows = false;
-            dgvSupporters.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgvSupporters.ReadOnly = true;
-            dgvSupporters.BackgroundColor = bg;
-            dgvSupporters.BorderStyle = BorderStyle.None;
-            dgvSupporters.GridColor = border;
-            dgvSupporters.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dgvSupporters.RowHeadersVisible = false;
-            dgvSupporters.MultiSelect = false;
-            dgvSupporters.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvSupporters.EnableHeadersVisualStyles = false;
-            dgvSupporters.ColumnHeadersHeight = 38;
-            dgvSupporters.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dgvSupporters.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dgvSupporters.ColumnHeadersDefaultCellStyle.BackColor = surface;
-            dgvSupporters.ColumnHeadersDefaultCellStyle.ForeColor = accent;
-            dgvSupporters.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI Semibold", 9F);
-            dgvSupporters.ColumnHeadersDefaultCellStyle.Padding = new Padding(10, 0, 0, 0);
-            dgvSupporters.DefaultCellStyle.BackColor = bg;
-            dgvSupporters.DefaultCellStyle.ForeColor = textPri;
-            dgvSupporters.DefaultCellStyle.SelectionBackColor = Color.FromArgb(45, 75, 110);
-            dgvSupporters.DefaultCellStyle.SelectionForeColor = Color.White;
-            dgvSupporters.DefaultCellStyle.Padding = new Padding(10, 5, 10, 5);
-            dgvSupporters.RowTemplate.Height = 34;
-            dgvSupporters.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(22, 22, 32);
-            dgvSupporters.AlternatingRowsDefaultCellStyle.ForeColor = textPri;
-            dgvSupporters.Name = "dgvSupporters";
-            dgvSupporters.TabIndex = 10;
+            this.btnUpdateEmail.BackColor = surface;
+            this.btnUpdateEmail.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUpdateEmail.FlatAppearance.BorderColor = border;
+            this.btnUpdateEmail.ForeColor = System.Drawing.Color.White;
+            this.btnUpdateEmail.Location = new System.Drawing.Point(162, 80);
+            this.btnUpdateEmail.Size = new System.Drawing.Size(138, 32);
+            this.btnUpdateEmail.Text = "✏  Update Email";
+            this.btnUpdateEmail.Click += new System.EventHandler(this.btnUpdateEmail_Click);
 
-            // ── GroupBox: Register / Manage Supporter ─────────────────────
-            gbRegistration.Text = "Register / Manage Supporter";
-            gbRegistration.Font = new Font("Segoe UI", 9F);
-            gbRegistration.ForeColor = accent;
-            gbRegistration.BackColor = groupBg;
-            gbRegistration.Location = new Point(16, 12);
-            gbRegistration.Size = new Size(700, 120);
+            this.btnRemove.BackColor = System.Drawing.Color.FromArgb(50, 20, 20);
+            this.btnRemove.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRemove.FlatAppearance.BorderColor = danger;
+            this.btnRemove.ForeColor = System.Drawing.Color.White;
+            this.btnRemove.Location = new System.Drawing.Point(544, 80);
+            this.btnRemove.Size = new System.Drawing.Size(142, 32);
+            this.btnRemove.Text = "🗑  Remove";
+            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
 
-            StyleLabel(lblFirstName, "First Name", 14, 28);
-            StyleTextBox(txtFirstName, 14, 46);
-            txtFirstName.Name = "txtFirstName"; txtFirstName.TabIndex = 1;
+            // gbContribution
+            this.gbContribution.BackColor = surface;
+            this.gbContribution.Controls.Add(this.btnSubmitContribution);
+            this.gbContribution.Controls.Add(this.txtAmount);
+            this.gbContribution.Controls.Add(this.lblAmount);
+            this.gbContribution.Controls.Add(this.cmbInitiative);
+            this.gbContribution.Controls.Add(this.lblInitiative);
+            this.gbContribution.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.gbContribution.ForeColor = accent;
+            this.gbContribution.Location = new System.Drawing.Point(732, 12);
+            this.gbContribution.Name = "gbContribution";
+            this.gbContribution.Size = new System.Drawing.Size(430, 120);
+            this.gbContribution.TabIndex = 1;
+            this.gbContribution.TabStop = false;
+            this.gbContribution.Text = "Log Contribution";
 
-            StyleLabel(lblLastName, "Last Name", 190, 28);
-            StyleTextBox(txtLastName, 190, 46);
-            txtLastName.Name = "txtLastName"; txtLastName.TabIndex = 2;
+            this.lblInitiative.AutoSize = true;
+            this.lblInitiative.ForeColor = textMuted;
+            this.lblInitiative.Location = new System.Drawing.Point(14, 28);
+            this.lblInitiative.Text = "Initiative";
+            this.cmbInitiative.BackColor = inputBg;
+            this.cmbInitiative.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cmbInitiative.ForeColor = textPri;
+            this.cmbInitiative.Location = new System.Drawing.Point(14, 46);
+            this.cmbInitiative.Size = new System.Drawing.Size(210, 23);
 
-            StyleLabel(lblEmail, "Email", 366, 28);
-            StyleTextBox(txtEmail, 366, 46, 210);
-            txtEmail.Name = "txtEmail"; txtEmail.TabIndex = 3;
+            this.lblAmount.AutoSize = true;
+            this.lblAmount.ForeColor = textMuted;
+            this.lblAmount.Location = new System.Drawing.Point(240, 28);
+            this.lblAmount.Text = "Amount";
+            this.txtAmount.BackColor = inputBg;
+            this.txtAmount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtAmount.ForeColor = textPri;
+            this.txtAmount.Location = new System.Drawing.Point(240, 46);
+            this.txtAmount.Size = new System.Drawing.Size(130, 23);
 
-            StyleButton(btnRegister, "＋  Register", surface, accent, 14, 80, 138);
-            btnRegister.Name = "btnRegister"; btnRegister.TabIndex = 4;
-            btnRegister.Click += btnRegister_Click;
+            this.btnSubmitContribution.BackColor = surface;
+            this.btnSubmitContribution.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSubmitContribution.FlatAppearance.BorderColor = accent;
+            this.btnSubmitContribution.ForeColor = System.Drawing.Color.White;
+            this.btnSubmitContribution.Location = new System.Drawing.Point(14, 80);
+            this.btnSubmitContribution.Size = new System.Drawing.Size(190, 32);
+            this.btnSubmitContribution.Text = "💳  Submit Contribution";
+            this.btnSubmitContribution.Click += new System.EventHandler(this.btnSubmitContribution_Click);
 
-            StyleButton(btnUpdateEmail, "✏  Update Email", surface, border, 162, 80, 138);
-            btnUpdateEmail.Name = "btnUpdateEmail"; btnUpdateEmail.TabIndex = 5;
-            btnUpdateEmail.Click += btnUpdateEmail_Click;
-
-            StyleButton(btnRemove, "🗑  Remove", Color.FromArgb(50, 20, 20), danger, 544, 80, 142);
-            btnRemove.Name = "btnRemove"; btnRemove.TabIndex = 6;
-            btnRemove.Click += btnRemove_Click;
-
-            gbRegistration.Controls.AddRange(new Control[]
-            {
-                lblFirstName, txtFirstName,
-                lblLastName,  txtLastName,
-                lblEmail,     txtEmail,
-                btnRegister, btnUpdateEmail, btnRemove
-            });
-
-            // ── GroupBox: Log Contribution ────────────────────────────────
-            gbContribution.Text = "Log Contribution";
-            gbContribution.Font = new Font("Segoe UI", 9F);
-            gbContribution.ForeColor = accent;
-            gbContribution.BackColor = groupBg;
-            gbContribution.Location = new Point(732, 12);
-            gbContribution.Size = new Size(430, 120);
-
-            StyleLabel(lblInitiative, "Initiative", 14, 28);
-            StyleComboBox(cmbInitiative, 14, 46, 210);
-            cmbInitiative.Name = "cmbInitiative"; cmbInitiative.TabIndex = 7;
-
-            StyleLabel(lblAmount, "Amount", 240, 28);
-            StyleTextBox(txtAmount, 240, 46, 130);
-            txtAmount.Name = "txtAmount"; txtAmount.TabIndex = 8;
-
-            StyleButton(btnSubmitContribution, "💳  Submit Contribution", surface, accent, 14, 80, 190);
-            btnSubmitContribution.Name = "btnSubmitContribution"; btnSubmitContribution.TabIndex = 9;
-            btnSubmitContribution.Click += btnSubmitContribution_Click;
-
-            gbContribution.Controls.AddRange(new Control[]
-            {
-                lblInitiative, cmbInitiative,
-                lblAmount,     txtAmount,
-                btnSubmitContribution
-            });
-
-            // ── Bottom form panel ─────────────────────────────────────────
-            pnlBottom.Dock = DockStyle.Bottom;
-            pnlBottom.Height = 148;
-            pnlBottom.BackColor = bg;
-            pnlBottom.Padding = new Padding(8);
-            pnlBottom.Controls.Add(gbRegistration);
-            pnlBottom.Controls.Add(gbContribution);
-
-            // ── UserControl ───────────────────────────────────────────────
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
-            BackColor = bg;
-            ForeColor = textPri;
-            Name = "SupporterTab";
-            Size = new Size(1272, 686);
-
-            // Order: Fill control added first, then Bottom, then Top (WinForms stacking)
-            Controls.Add(dgvSupporters);
-            Controls.Add(pnlBottom);
-            Controls.Add(pnlHeader);
-
-            ((System.ComponentModel.ISupportInitialize)dgvSupporters).EndInit();
-            gbRegistration.ResumeLayout(false);
-            gbRegistration.PerformLayout();
-            gbContribution.ResumeLayout(false);
-            gbContribution.PerformLayout();
-            pnlBottom.ResumeLayout(false);
-            pnlHeader.ResumeLayout(false);
-            ResumeLayout(false);
+            // SupporterTab
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = bg;
+            this.Controls.Add(this.dgvSupporters);
+            this.Controls.Add(this.pnlBottom);
+            this.Controls.Add(this.pnlHeader);
+            this.Name = "SupporterTab";
+            this.Size = new System.Drawing.Size(1272, 686);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSupporters)).EndInit();
+            this.pnlHeader.ResumeLayout(false);
+            this.pnlBottom.ResumeLayout(false);
+            this.gbRegistration.ResumeLayout(false);
+            this.gbRegistration.PerformLayout();
+            this.gbContribution.ResumeLayout(false);
+            this.gbContribution.PerformLayout();
+            this.ResumeLayout(false);
         }
 
         #endregion
 
-        private DataGridView dgvSupporters;
-        private TextBox txtFirstName;
-        private TextBox txtLastName;
-        private TextBox txtEmail;
-        private Button btnRegister;
-        private Button btnUpdateEmail;
-        private Button btnRemove;
-        private ComboBox cmbInitiative;
-        private TextBox txtAmount;
-        private Button btnSubmitContribution;
-        private Label lblFirstName;
-        private Label lblLastName;
-        private Label lblEmail;
-        private Label lblInitiative;
-        private Label lblAmount;
+        private System.Windows.Forms.DataGridView dgvSupporters;
+        private System.Windows.Forms.TextBox txtFirstName;
+        private System.Windows.Forms.TextBox txtLastName;
+        private System.Windows.Forms.TextBox txtEmail;
+        private System.Windows.Forms.Button btnRegister;
+        private System.Windows.Forms.Button btnUpdateEmail;
+        private System.Windows.Forms.Button btnRemove;
+        private System.Windows.Forms.ComboBox cmbInitiative;
+        private System.Windows.Forms.TextBox txtAmount;
+        private System.Windows.Forms.Button btnSubmitContribution;
+        private System.Windows.Forms.Label lblFirstName;
+        private System.Windows.Forms.Label lblLastName;
+        private System.Windows.Forms.Label lblEmail;
+        private System.Windows.Forms.Label lblInitiative;
+        private System.Windows.Forms.Label lblAmount;
+        private System.Windows.Forms.Panel pnlHeader;
+        private System.Windows.Forms.Label lblTitle;
+        private System.Windows.Forms.Panel pnlBottom;
+        private System.Windows.Forms.GroupBox gbRegistration;
+        private System.Windows.Forms.GroupBox gbContribution;
     }
 }
