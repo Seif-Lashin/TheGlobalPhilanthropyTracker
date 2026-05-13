@@ -12,8 +12,12 @@ namespace TheGlobalPhilanthropyTracker.Repositories
             string sql = @"
                 SELECT i.INITIATIVEID, i.TITLE
                 FROM INITIATIVES i
-                WHERE NOT EXISTS (SELECT 1 FROM EXPENDITURES e WHERE e.INITIATIVEID = i.INITIATIVEID)";
-
+                WHERE NOT EXISTS 
+                (
+                    SELECT 1 FROM EXPENDITURES e WHERE e.INITIATIVEID = i.INITIATIVEID
+                    AND MONTH(e.DATE_SPENT) = MONTH(DATEADD(MONTH, -1, GETDATE())) 
+                    AND YEAR(e.DATE_SPENT) = YEAR(DATEADD(MONTH, -1, GETDATE()))
+                )";
             DataTable dt = new DataTable();
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
@@ -34,11 +38,11 @@ namespace TheGlobalPhilanthropyTracker.Repositories
                 LEFT JOIN SECTORS sec ON i.SECTORID = sec.SECTORID
                 WHERE i.INITIATIVEID IN (
                     SELECT c.INITIATIVEID FROM CONTRIBUTIONS c
-                    WHERE c.TIMESTAMP > DATEADD(DAY, -30, GETDATE())
+                    WHERE MONTH(c.TIMESTAMP) = MONTH(DATEADD(MONTH, -1, GETDATE())) AND YEAR(c.TIMESTAMP) = YEAR(DATEADD(MONTH, -1, GETDATE()))
                 )
                 OR i.INITIATIVEID IN (
                     SELECT e.INITIATIVEID FROM EXPENDITURES e
-                    WHERE e.DATE_SPENT > DATEADD(DAY, -30, GETDATE())
+                    WHERE MONTH(e.DATE_SPENT) = MONTH(DATEADD(MONTH, -1, GETDATE())) AND YEAR(e.DATE_SPENT) = YEAR(DATEADD(MONTH, -1, GETDATE()))
                 )";
 
             DataTable dt = new DataTable();
