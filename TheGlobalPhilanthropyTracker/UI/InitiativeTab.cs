@@ -5,6 +5,9 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using TheGlobalPhilanthropyTracker.Models;
+using TheGlobalPhilanthropyTracker.Repositories;
+using TheGlobalPhilanthropyTracker.UI.InitiativeTabUtils;
 
 namespace TheGlobalPhilanthropyTracker.UI
 {
@@ -13,6 +16,127 @@ namespace TheGlobalPhilanthropyTracker.UI
         public InitiativeTab()
         {
             InitializeComponent();
+            readInitiatives();
+        }
+
+        private void readInitiatives()
+        {
+            DataTable dataTable = new DataTable();
+            dataTable.Columns.Add("InitiativeID", typeof(int));
+            dataTable.Columns.Add("Title", typeof(string));
+            dataTable.Columns.Add("Primary Objective", typeof(string));
+            dataTable.Columns.Add("Funding Target", typeof(decimal));
+            dataTable.Columns.Add("Start Date", typeof(DateTime));
+            dataTable.Columns.Add("End Date", typeof(DateTime));
+            dataTable.Columns.Add("Sector", typeof(string));
+            var repository = new InitiativeRepository();
+            var initiatives = repository.GetInitiatives();
+            var sectorRepository = new SectorRepository();
+
+            var allSectors = sectorRepository.GetSectors().ToDictionary(s => s.sectorId, s => s.name);
+
+            foreach (var initiative in initiatives)
+            {
+
+                string sectorName = allSectors.TryGetValue(initiative.sectorId, out var name) ? name : "Unknown/Deleted";
+
+                dataTable.Rows.Add(
+                    initiative.initiativeId,
+                    initiative.title,
+                    initiative.primaryObjective,
+                    initiative.fundingTarget,
+                    initiative.startDate,
+                    initiative.endDate,
+                    sectorName
+                );
+            }
+
+            this.initiativesTable.DataSource = dataTable;
+        }
+
+        private void btnAddInitiative_Click(object sender, EventArgs e)
+        {
+            CreateEditForm form = new CreateEditForm();
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                readInitiatives();
+            }
+            else
+            {
+                Console.WriteLine("Initiative creation cancelled.");
+            }
+        }
+
+        private void btnEditInitiative_Click(object sender, EventArgs e)
+        {
+            if (this.initiativesTable.CurrentRow == null || this.initiativesTable.CurrentRow.Index < 0) return;
+
+            var val = this.initiativesTable.CurrentRow.Cells["InitiativeID"].Value;
+            if (val == null || val == DBNull.Value) return;
+
+            int id = Convert.ToInt32(val);
+
+            var repo = new InitiativeRepository();
+            var initiative = repo.GetInitiative(id);
+
+            if (initiative == null) return;
+
+            CreateEditForm form = new CreateEditForm();
+            form.EditInitiative(initiative);
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                readInitiatives();
+            }
+            else
+            {
+                Console.WriteLine("Initiative edit cancelled.");
+            }
+        }
+
+        private void btnDeleteInitiative_Click(object sender, EventArgs e)
+        {
+            if (this.initiativesTable.CurrentRow == null || this.initiativesTable.CurrentRow.Index < 0) return;
+
+            var val = this.initiativesTable.CurrentRow.Cells["InitiativeID"].Value;
+
+            if (val == null || val == DBNull.Value) return;
+            int id = Convert.ToInt32(val);
+
+            var repo = new InitiativeRepository();
+            repo.DeleteInitiative(id);
+            readInitiatives();
+        }
+
+        private void initiativesTable_SelectionChanged(object sender, EventArgs e)
+        {
+            if (initiativesTable.CurrentRow == null || initiativesTable.CurrentRow.Index < 0)
+            {
+                this.lbCount.Text = "0";
+                this.lbTotal.Text = 0.ToString("C");
+                this.rtbSummary.Text = "Select an initiative to see details.";
+                return;
+            }
+
+            var val = this.initiativesTable.CurrentRow.Cells["InitiativeID"].Value;
+            if (val == null || val == DBNull.Value) return;
+
+            var repo = new InitiativeRepository();
+            var initiative = repo.GetInitiative(Convert.ToInt32(val));
+
+            if (initiative == null) return;
+
+            this.lbCount.Text = repo.GetContributionsCount(initiative.initiativeId).ToString();
+            this.lbTotal.Text = repo.GetTotalContributions(initiative.initiativeId).ToString("C");
+
+            if (!string.IsNullOrEmpty(initiative.impactSummaries))
+            {
+                this.rtbSummary.Text = initiative.impactSummaries;
+                this.gbSummary.Visible = true;
+            }
+            else
+            {
+                this.rtbSummary.Text = "No impact summaries available.";
+            }
         }
     }
 }
