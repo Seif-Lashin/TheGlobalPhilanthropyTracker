@@ -15,26 +15,7 @@ namespace TheGlobalPhilanthropyTracker.UI
         {
             InitializeComponent();
 
-            dgvSupporters.EnableHeadersVisualStyles = false;
-            dgvSupporters.BackgroundColor = Color.FromArgb(30, 30, 30);
-            dgvSupporters.BorderStyle = BorderStyle.None;
-            dgvSupporters.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dgvSupporters.GridColor = Color.FromArgb(50, 50, 50);
-            dgvSupporters.RowHeadersVisible = false;
-            dgvSupporters.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgvSupporters.MultiSelect = false;
-            dgvSupporters.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dgvSupporters.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(45, 45, 48);
-            dgvSupporters.ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb(224, 224, 224);
-            dgvSupporters.ColumnHeadersDefaultCellStyle.Padding = new Padding(5);
-            dgvSupporters.ColumnHeadersHeight = 35;
-
-            dgvSupporters.DefaultCellStyle.BackColor = Color.FromArgb(30, 30, 30);
-            dgvSupporters.DefaultCellStyle.ForeColor = Color.FromArgb(200, 200, 200);
-            dgvSupporters.DefaultCellStyle.SelectionBackColor = Color.FromArgb(60, 60, 65);
-            dgvSupporters.DefaultCellStyle.SelectionForeColor = Color.White;
-            dgvSupporters.DefaultCellStyle.Padding = new Padding(5);
-            dgvSupporters.RowTemplate.Height = 30;
+            
 
             dgvSupporters.SelectionChanged += dgvSupporters_SelectionChanged;
 

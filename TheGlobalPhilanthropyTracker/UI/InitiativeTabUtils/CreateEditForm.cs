@@ -99,8 +99,8 @@ namespace TheGlobalPhilanthropyTracker.UI.InitiativeTabUtils
                 initiative.primaryObjective = this.tbObjective.Text;
                 initiative.title = this.tbTitle.Text;
                 initiative.impactSummaries = this.tbSummary.Text;
-                initiative.startDate = this.dtStart.Value;
-                initiative.endDate = this.dtEnd.Value;
+                initiative.startDate = this.dtStart.Value.Date;
+                initiative.endDate = this.dtEnd.Value.Date;
                 initiative.fundingTarget = this.numericUpDownTarget.Value;
 
                 var repo = new InitiativeRepository();
